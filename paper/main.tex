@@ -1,0 +1,297 @@
+% ============================================================================
+% AIDER — AI-Driven Energy Research
+% Paper Template v1.0
+%
+% INSTRUCTIONS FOR AUTHORS:
+%   - Fill in your title, authors, affiliations, and abstract below
+%   - Write your paper in the sections provided
+%   - Do NOT modify the header block (lines marked "EDITORIAL USE ONLY")
+%   - The editorial header will be populated automatically upon acceptance
+%
+% INSTRUCTIONS FOR EDITORS (post-acceptance):
+%   - Set \acceptedtrue (line ~65)
+%   - Fill in \aiderdoi, \aidervolume, \aiderissue, \aideryear, \aiderpages
+%   - Fill in \editorname, \reviewernames, \submitteddate, \accepteddate, \publisheddate
+%   - Replace the text logo with \includegraphics when logo file is ready
+% ============================================================================
+
+\documentclass[11pt, a4paper]{article}
+
+% --- Core packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{ifthen}
+
+% --- Colours ---
+\definecolor{aiderblue}{HTML}{2563EB}
+\definecolor{aiderdark}{HTML}{0A0F1A}
+\definecolor{aidergrey}{HTML}{6B7280}
+\definecolor{aiderlight}{HTML}{F3F4F6}
+\definecolor{aidergreen}{HTML}{059669}
+
+% --- Hyperref setup ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=aiderblue,
+    citecolor=aiderblue,
+    urlcolor=aiderblue,
+    pdfborder={0 0 0}
+}
+
+% ============================================================================
+% EDITORIAL METADATA — filled upon acceptance (do not modify as author)
+% ============================================================================
+
+% Set to true when paper is accepted and published
+\newif\ifaccepted
+\acceptedfalse  % ← Editor sets to \acceptedtrue
+
+% Publication metadata (EDITORIAL USE ONLY)
+\newcommand{\aiderdoi}{10.5281/zenodo.XXXXXXX}
+\newcommand{\aidervolume}{1}
+\newcommand{\aiderissue}{1}
+\newcommand{\aideryear}{2026}
+\newcommand{\aiderpages}{1--XX}
+\newcommand{\editorname}{@editor-github}
+\newcommand{\reviewernames}{@reviewer1, @reviewer2}
+\newcommand{\submitteddate}{YYYY-MM-DD}
+\newcommand{\accepteddate}{YYYY-MM-DD}
+\newcommand{\publisheddate}{YYYY-MM-DD}
+\newcommand{\repourl}{https://github.com/author/repo}
+\newcommand{\reviewurl}{https://github.com/ai-driven-energy-research/submissions/issues/XX}
+
+% ============================================================================
+% AUTHOR METADATA — fill these in
+% ============================================================================
+
+\newcommand{\papertitle}{Your Paper Title}
+\newcommand{\paperauthors}{Author One$^{1}$, Author Two$^{2}$}
+\newcommand{\paperaffiliations}{%
+    $^{1}$Department, University, City, Country\\
+    $^{2}$Department, University, City, Country%
+}
+\newcommand{\paperemail}{corresponding.author@example.com}
+\newcommand{\paperkeywords}{keyword one, keyword two, keyword three}
+
+% ============================================================================
+% HEADER / FOOTER (subsequent pages)
+% ============================================================================
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\lhead{\fontfamily{phv}\selectfont\footnotesize\color{aidergrey}%
+    \textbf{AIDER} \textbar\ AI-Driven Energy Research}
+\rhead{\fontfamily{phv}\selectfont\footnotesize\color{aidergrey}%
+    \ifaccepted Vol.~\aidervolume, No.~\aiderissue~(\aideryear)%
+    \else Preprint\fi}
+
+\lfoot{\fontfamily{phv}\selectfont\scriptsize\color{aidergrey}%
+    \ifaccepted \href{https://doi.org/\aiderdoi}{https://doi.org/\aiderdoi}%
+    \else \textit{Under review at AI-Driven Energy Research}\fi}
+\rfoot{\fontfamily{phv}\selectfont\scriptsize\color{aidergrey}\thepage}
+
+% --- First page: no header rule, custom footer ---
+\fancypagestyle{plain}{%
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0.4pt}
+    \lfoot{\fontfamily{phv}\selectfont\scriptsize\color{aidergrey}%
+        \ifaccepted \href{https://doi.org/\aiderdoi}{https://doi.org/\aiderdoi}%
+        \else \textit{Under review at AI-Driven Energy Research}\fi}
+    \rfoot{\fontfamily{phv}\selectfont\scriptsize\color{aidergrey}\thepage}
+}
+
+% --- Section styling ---
+\titleformat{\section}
+    {\fontfamily{phv}\selectfont\Large\bfseries\color{aiderdark}}
+    {\thesection}{0.8em}{}
+\titleformat{\subsection}
+    {\fontfamily{phv}\selectfont\large\bfseries\color{aiderdark}}
+    {\thesubsection}{0.8em}{}
+\titleformat{\subsubsection}
+    {\fontfamily{phv}\selectfont\normalsize\bfseries\color{aiderdark}}
+    {\thesubsubsection}{0.8em}{}
+
+% --- Caption styling ---
+\captionsetup{
+    font={small, sf},
+    labelfont={bf, color=aiderdark},
+    margin=1em
+}
+
+% ============================================================================
+% AIDER BANNER COMMAND
+% ============================================================================
+
+\newcommand{\aiderbanner}{%
+    % --- Dark banner ---
+    \noindent\colorbox{aiderdark}{%
+        \parbox{\dimexpr\textwidth-2\fboxsep\relax}{%
+            \vspace{8pt}%
+            \hspace{6pt}%
+            % TODO: Replace with \includegraphics[height=1cm]{aider-logo.pdf}
+            {\fontfamily{phv}\selectfont\bfseries\color{white}\Large AIDER}%
+            \hspace{8pt}%
+            {\fontfamily{phv}\selectfont\color{white!70}\small AI-Driven Energy Research}%
+            \hfill%
+            {\fontfamily{phv}\selectfont\color{aidergreen}\footnotesize\bfseries Diamond Open Access}%
+            \hspace{6pt}%
+            \vspace{8pt}%
+        }%
+    }%
+
+    % --- Blue accent line ---
+    \noindent\colorbox{aiderblue}{%
+        \parbox{\dimexpr\textwidth-2\fboxsep\relax}{\vspace{1.5pt}}%
+    }%
+
+    \vspace{10pt}%
+
+    % --- Metadata block ---
+    \ifaccepted
+        {\fontfamily{phv}\selectfont\scriptsize\color{aidergrey}%
+        \noindent
+        \begin{tabular}{@{}l@{\hspace{1.2em}}l@{\hspace{1.2em}}l@{}}
+            \textbf{DOI:} \href{https://doi.org/\aiderdoi}{\aiderdoi}
+            & \textbf{Volume:} \aidervolume(\aiderissue), pp.~\aiderpages
+            & \textbf{Published:} \publisheddate \\[4pt]
+            \textbf{Editor:} \editorname
+            & \textbf{Reviewers:} \reviewernames
+            & \textbf{Submitted:} \submitteddate \\[4pt]
+            \textbf{Repository:} \href{\repourl}{GitHub}
+            & \textbf{Review:} \href{\reviewurl}{Submission Issue}
+            & \textbf{Accepted:} \accepteddate \\
+        \end{tabular}%
+        }%
+    \else
+        {\fontfamily{phv}\selectfont\scriptsize\color{aidergrey}%
+        \noindent
+        \begin{tabular}{@{}l@{\hspace{2em}}l@{\hspace{2em}}l@{}}
+            \textbf{DOI:} \textit{assigned upon acceptance}
+            & \textbf{Volume / Issue:} \textit{assigned upon acceptance}
+            & \textbf{Status:} \textit{Preprint / Under Review} \\[4pt]
+            \textbf{Editor:} \textit{assigned upon submission}
+            & \textbf{Reviewers:} \textit{assigned upon submission}
+            & \textbf{License:} CC-BY 4.0 \\
+        \end{tabular}%
+        }%
+    \fi
+
+    \vspace{4pt}%
+    \noindent\rule{\textwidth}{0.4pt}%
+}
+
+% ============================================================================
+% DOCUMENT
+% ============================================================================
+
+\begin{document}
+\thispagestyle{plain}
+
+% --- AIDER Banner ---
+\aiderbanner
+
+\vspace{0.6cm}
+
+% --- Title ---
+{\fontfamily{phv}\selectfont\LARGE\bfseries\color{aiderdark}
+\papertitle\par}
+
+\vspace{0.5cm}
+
+% --- Authors ---
+{\fontfamily{phv}\selectfont\normalsize\color{aidergrey}
+\paperauthors\par}
+
+\vspace{0.25cm}
+
+% --- Affiliations ---
+{\fontfamily{phv}\selectfont\small\color{aidergrey}
+\paperaffiliations\par}
+
+\vspace{0.15cm}
+
+% --- Contact ---
+{\fontfamily{phv}\selectfont\small
+\href{mailto:\paperemail}{\paperemail}\par}
+
+\vspace{0.6cm}
+
+% --- Abstract ---
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{0.2cm}
+{\fontfamily{phv}\selectfont\footnotesize\bfseries\color{aiderdark} ABSTRACT}
+\vspace{0.15cm}
+
+\noindent
+{\small Your abstract here. Describe the problem, methodology, key results, and
+significance. Keep to 150--300 words.}
+
+\vspace{0.2cm}
+\noindent\rule{\textwidth}{0.4pt}
+
+\vspace{0.2cm}
+{\fontfamily{phv}\selectfont\footnotesize\color{aidergrey}
+\textbf{Keywords:} \paperkeywords}
+
+\vspace{0.6cm}
+
+% ============================================================================
+% PAPER BODY — write your paper below
+% ============================================================================
+
+\section{Introduction}
+
+% Your introduction here.
+
+\section{Methodology}
+
+% Your methodology here.
+
+\section{Results}
+
+% Your results here.
+
+\section{Discussion}
+
+% Your discussion here.
+
+\section{Conclusion}
+
+% Your conclusions here.
+
+% --- AI Process Disclosure (required by AIDER) ---
+\section*{AI Process Disclosure}
+
+This research was conducted with AI assistance. The complete process log,
+including all AI agent transcripts, prompts, and a timestamped record of
+human decisions, is available in the
+\href{\repourl/tree/main/process-log}{process-log directory} of the
+paper repository.
+
+% Tools used, scope of AI involvement, and human oversight should be
+% summarised here. Full details belong in the process-log/ directory.
+
+% --- Acknowledgements ---
+\section*{Acknowledgements}
+
+% Your acknowledgements here.
+
+% --- References ---
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}
