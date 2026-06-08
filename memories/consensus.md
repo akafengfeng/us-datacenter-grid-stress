@@ -1,25 +1,30 @@
 # Research System Consensus
 
 ## Last Updated
-_Not yet started_
+2026-06-08
 
 ## Current Phase
-NOT STARTED — Run `python3 setup.py` to begin
+COMPLETE — Submitted to AIDER
 
 ## Active Paper
-- **Name**: _TBD_
-- **Journal**: _TBD_
-- **Topic**: _TBD_
-- **Status**: Not started
+- **Name**: AI-Driven Data Centre Demand Concentration and Renewable Energy Misalignment in the United States
+- **Journal**: AIDER — AI-Driven Energy Research
+- **Topic**: Facility-level spatial analysis of US data centre energy demand; DCGSI; renewable misalignment
+- **Status**: Submitted
 
 ## Latest Scores
-- Judge: —/10
-- Statistician: —/10
-- Illustrator: —/10
-- Editor: —/10
+- Judge: 8/10
+- Statistician: 8/10
+- Illustrator: 8/10
+- Editor: 8/10
 
 ## What We Did This Cycle
-_Nothing yet._
+Full paper produced: 5 experiments, 5 figures, ~1,300-line LaTeX manuscript,
+35+ references, 112-facility dataset, eGRID 2022 integration.
 
-## Next Action
-Run `python3 setup.py` to create the paper plan and start the research pipeline.
+## Key Results
+- Northern Virginia: 31.2% of national DC capacity, DCGSI = 9.9/10
+- Fleet-average CO₂: 357 gCO₂/kWh
+- 5 of 9 markets have RAS < 1.0 (below fleet-average renewable fraction)
+- OLS R² = 0.89, Moran's I = -0.17 (p=1.23, no spatial autocorrelation)
+- reproduce.sh: exit 0, all 5 figures generated deterministically

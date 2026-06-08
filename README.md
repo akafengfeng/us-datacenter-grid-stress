@@ -1,165 +1,76 @@
-# AI Agent-Aided Research System
+# AI-Driven Data Centre Demand Concentration and Renewable Energy Misalignment in the United States
 
-An autonomous research pipeline that uses 7 specialized AI agents to produce
-publication-ready academic papers. Fork this template to start a new paper.
+**A Facility-Level Spatial Analysis, the Data Centre Grid Stress Index, and Evidence-Based Siting Policy**
 
-Part of [AIDER — AI-Driven Energy Research](https://ai-driven-energy-research.github.io/).
+**Author:** Feng Wei — China Academy of Information and Communications Technology (CAICT) — weifeng@caict.ac.cn
 
-## The Team
+**Journal:** AIDER — AI-Driven Energy Research
 
-| Agent | Persona | Role | Phase |
-|-------|---------|------|-------|
-| **Director** | Richard Feynman | Research direction, novelty framing | Setup (once) |
-| **Librarian** | Eugene Garfield | Literature search, gap verification, reference building | Setup (once) |
-| **Worker** | The PhD Student | Primary author: code, experiments, figures, LaTeX | Production (loop) |
-| **Judge** | Charlie Munger | Technical review, anti-shortcut detection | Production (loop) |
-| **Statistician** | Ronald Fisher | Statistical rigor, uncertainty quantification | Production (loop) |
-| **Illustrator** | Edward Tufte | Figure design, data-ink ratio, visual quality | Production (loop) |
-| **Editor** | William Strunk Jr. | Writing clarity, LaTeX compliance, reference integrity | Production (loop) |
+---
 
-## How It Works
+## Abstract
 
-### Phase 1: Setup (One-Time)
+The explosive growth of AI computing has made data centres the fastest-growing source of US grid demand, yet existing literature treats energy implications at national or sector level without spatial granularity. We address this gap with a facility-level analysis of 312 US data centre records (Q1 2024, 112 confirmed facilities). Weighted k-means clustering (k=8) identifies eight distinct capacity markets: Northern Virginia alone captures 31.2% of national installed IT load and exhibits a 12.4% yr⁻¹ demand growth rate. We introduce the Data Centre Grid Stress Index (DCGSI), a four-component composite metric integrating demand growth, colocation density, transmission headroom, and renewable deficit, validated over a 10,000-draw Monte Carlo sensitivity analysis on the full weight simplex. Northern Virginia scores 9.9/10; the national median is 5.1. A Renewable Alignment Score analysis reveals that five of nine markets operate below the fleet-average renewable fraction (25.1%), including Northern Virginia (RAS = 0.59), Phoenix (RAS = 0.49), and Atlanta (RAS = 0.53). State-level OLS regression (n=30, HC3 robust SEs, R² = 0.89) confirms that data centre density is the dominant predictor of electricity demand growth, with Moran's I indicating no residual spatial autocorrelation. We propose a three-tier evidence-based siting policy framework (FERC interconnection conditionality, renewable-first zoning, 24/7 carbon-free energy procurement mandates) and quantify the social cost of carbon at the facility level.
 
-The **Director** frames the research question and novelty. The **Librarian** searches
-literature, verifies the gap, builds references, and creates figure quality benchmarks
-from competitor papers.
-
-### Phase 2: Production (Iterative Loop)
-
-```
-Worker → Judge → Worker → Statistician → Worker → Editor → Worker → Illustrator → repeat
-```
-
-The Worker does the research. Four specialized reviewers take turns critiquing it.
-The loop runs until all reviewer scores reach 8+/10, at which point you decide
-whether to submit.
-
-## Quick Start
-
-### Prerequisites
-
-- [Claude Code CLI](https://github.com/anthropics/claude-code) installed
-- Python 3.10+
-- LaTeX distribution (texlive recommended)
-- `poppler-utils` (for PDF analysis: `apt install poppler-utils`)
-
-### 1. Fork This Template
-
-Click **"Use this template"** on GitHub to create your own repository.
-
-### 2. Set Up Your Paper
-
-```bash
-# Interactive mode (recommended):
-python3 setup.py
-
-# Or quick mode:
-python3 setup.py \
-    --name "my_paper" \
-    --journal "Applied Energy" \
-    --topic "Neural network surrogate for heat exchanger design" \
-    --gap "No existing surrogate captures turbulent regime transitions" \
-    --methods "Physics-informed neural network with boundary layer constraints"
-```
-
-This creates the project structure, seeds `plan.md` with your input, then runs
-the Director and Librarian to complete the research plan.
-
-### 3. Start the Production Loop
-
-```bash
-python3 watcher.py
-```
-
-The watcher orchestrates the agent rotation automatically. It runs forever until
-you press Ctrl+C. Drop instructions into `reviews/USER_REVIEW.md` at any time
-to redirect all agents.
+---
 
 ## Repository Structure
 
 ```
-├── CLAUDE.md                     # Master system prompt (all agents read this)
-├── PROMPT.md                     # Cycle instructions
-├── setup.py                      # Project setup script
-├── watcher.py                    # Agent orchestrator
-├── tools/                        # Quality analysis tools
-│   ├── layout_analyzer.py        # PDF layout defect detection
-│   ├── figure_inspector.py       # Figure quality scoring
-│   └── pdf_to_pages.py           # PDF → PNG conversion
-├── .claude/agents/               # Agent definitions
-│   ├── director.md               # Research strategist
-│   ├── librarian.md              # Literature expert
-│   ├── worker.md                 # Primary author
-│   ├── judge.md                  # Technical reviewer
-│   ├── statistician.md           # Statistics reviewer
-│   ├── illustrator.md            # Figure reviewer
-│   └── editor.md                 # Writing reviewer
-├── memories/                     # Cross-session state
-│   ├── constraints.md            # Immutable rules
-│   └── consensus.md              # Current phase and scores
-├── work-progress/                # Planning and coordination
-│   ├── plan.md                   # Paper blueprint (living document)
-│   └── progress.md               # Worker signals for review
-├── paper/                        # Manuscript
-│   ├── main.tex
-│   ├── references.bib
-│   └── figures/
-├── code/                         # All source code
-│   ├── README.md
-│   ├── requirements.txt
-│   ├── figures/                  # One Python script per figure
-│   └── utils/
-│       └── plotting_utils.py     # Shared figure styling
-├── data/                         # Datasets
-│   └── README.md
-├── related-papers/               # Literature and competitor analysis
-│   └── README.md
-├── reviews/                      # Agent and user reviews
-│   └── USER_REVIEW.md            # Drop instructions here any time
-├── publishing-guide/             # Journal template files
-├── process-log/                  # AIDER submission requirement
-│   ├── README.md
-│   ├── ai-sessions/
-│   └── human-decisions/
+├── paper/
+│   ├── main.tex              # Full manuscript (~1,300 lines, elsarticle)
+│   ├── references.bib        # 35+ references
+│   └── figures/              # Generated by code/ scripts
+├── code/
+│   ├── config.py             # Shared config (paths, seeds, weights)
+│   ├── load_data.py          # Data loading utilities
+│   ├── 00_verify_data.py     # Data integrity check
+│   ├── 02_clustering.py      # Experiment 1: spatial clustering
+│   ├── 03_carbon_dcgsi.py    # Experiments 2 & 5: carbon + DCGSI
+│   ├── 04_regression.py      # Experiment 3: OLS regression
+│   ├── 05_ras.py             # Experiment 4: Renewable Alignment Score
+│   ├── README.md             # Setup and run instructions
+│   └── requirements.txt
+├── data/
+│   ├── facilities/           # 112-facility curated dataset (CSV)
+│   ├── egrid2022/            # EPA eGRID 2022 sub-region rates (CSV)
+│   └── README.md             # Data sources and schema
 ├── results/
-│   └── reproduce.sh
-├── logs/                         # Agent runtime logs
-├── REPRODUCIBILITY.md
-└── LICENSE
+│   ├── reproduce.sh          # One-command reproduction
+│   └── figures/              # Generated PDFs (committed for reference)
+├── process-log/
+│   ├── README.md
+│   ├── ai-sessions/          # AI session documentation
+│   └── human-decisions/      # Human editorial decisions
+├── REPRODUCIBILITY.md        # Completed checklist
+└── LICENSE                   # CC-BY 4.0 (paper), MIT (code)
 ```
 
-## User Intervention
+## Reproducing Results
 
-Drop a file called `USER_REVIEW.md` into `reviews/` at any time. The watcher
-detects it, archives it with a timestamp, and forces the Worker to address your
-instructions as the highest priority.
+```bash
+# Install dependencies
+pip install -r code/requirements.txt
 
-## Key Features
+# Run full pipeline (generates all figures and tables)
+bash results/reproduce.sh
+```
 
-- **Anti-shortcut enforcement**: The Judge verifies that computational experiments
-  actually ran — checks output file sizes, solver logs, and timestamps
-- **Textual vision**: The Librarian creates detailed textual descriptions of
-  competitor paper figures (`FIGURE_QUALITY_STANDARDS.md`), giving the Worker and
-  Illustrator a benchmark for journal quality
-- **Programmatic quality tools**: `layout_analyzer.py` and `figure_inspector.py`
-  detect layout defects and figure quality issues without relying on visual inspection
-- **Rate-limit resilience**: The watcher detects API rate limits and runs local
-  tasks while waiting for recovery
-- **Session persistence**: Agent sessions are saved and resumed across restarts
+Requires Python 3.11+. Random seed: 42. All outputs are deterministic.
 
-## Submitting to AIDER
+## Key Findings
 
-When all reviewer scores reach 8+/10:
-
-1. Ensure `results/reproduce.sh` regenerates all figures and tables
-2. Complete `REPRODUCIBILITY.md`
-3. Copy agent logs from `logs/` to `process-log/ai-sessions/`
-4. Document human decisions in `process-log/human-decisions/`
-5. Open a [submission issue](https://github.com/ai-driven-energy-research/submissions/issues/new/choose)
+| Metric | Value |
+|--------|-------|
+| Northern Virginia capacity share | 31.2% |
+| NVA demand growth rate | 12.4% yr⁻¹ |
+| Fleet-average CO₂ intensity | 357 gCO₂/kWh |
+| NVA DCGSI score | 9.9 / 10 |
+| Markets with RAS < 1.0 | 5 of 9 |
+| OLS R² (demand growth ~ DC density) | 0.89 |
 
 ## License
 
-- **Paper** (`paper/`): CC-BY 4.0
+- **Paper** (`paper/`): [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 - **Code** (`code/`): MIT License
-- **Data** (`data/`): See `data/README.md`
+- **Data** (`data/`): Public domain (US government sources) — see `data/README.md`
