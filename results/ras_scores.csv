@@ -1,0 +1,10 @@
+market,egrid_subrgn,cap_share_pct,dc_growth_pct,renew_frac,r_nat,ras,alignment
+Pacific Northwest,NWPP,5.5,2.1,0.721,0.250984,2.8726930800369743,Strongly above-aligned
+SF Bay Area,CAMX,5.4,2.8,0.583,0.250984,2.3228572339272624,Strongly above-aligned
+Dallas–Fort Worth,ERCT,15.5,8.7,0.348,0.250984,1.3865425684505785,Above-aligned
+NYC Metro,NYUP,5.0,3.1,0.263,0.250984,1.0478755617887994,Near-aligned
+Dispersed,RFCE,14.0,2.5,0.22,0.250984,0.8765498995951934,Under-aligned
+Chicago Metro,RFCW,8.5,4.2,0.197,0.250984,0.7849105919102414,Under-aligned
+Northern Virginia,SRVC,31.2,12.4,0.148,0.250984,0.5896790233640391,Under-aligned
+Atlanta,SRCE,7.0,6.3,0.132,0.250984,0.525929939757116,Under-aligned
+Phoenix,AZNM,7.9,5.8,0.124,0.250984,0.49405539795365444,Severely under-aligned

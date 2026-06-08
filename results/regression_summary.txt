@@ -1,0 +1,28 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             growth_pct   R-squared:                       0.890
+Model:                            OLS   Adj. R-squared:                  0.872
+Method:                 Least Squares   F-statistic:                     28.64
+Date:                Mon, 08 Jun 2026   Prob (F-statistic):           5.20e-09
+Time:                        04:29:28   Log-Likelihood:                -38.378
+No. Observations:                  30   AIC:                             86.76
+Df Residuals:                      25   BIC:                             93.76
+Df Model:                           4                                         
+Covariance Type:                  HC3                                         
+==================================================================================
+                     coef    std err          z      P>|z|      [0.025      0.975]
+----------------------------------------------------------------------------------
+const             -1.0333      2.125     -0.486      0.627      -5.198       3.131
+dc_density         1.4453      1.421      1.017      0.309      -1.339       4.230
+industrial_mix     0.3753      3.646      0.103      0.918      -6.770       7.521
+pop_growth_pct     0.0446      1.348      0.033      0.974      -2.598       2.688
+gdp_growth_pct     0.9784      1.277      0.766      0.444      -1.525       3.482
+==============================================================================
+Omnibus:                        2.584   Durbin-Watson:                   0.852
+Prob(Omnibus):                  0.275   Jarque-Bera (JB):                2.222
+Skew:                           0.645   Prob(JB):                        0.329
+Kurtosis:                       2.665   Cond. No.                         63.5
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity robust (HC3)

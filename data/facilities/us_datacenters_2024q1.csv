@@ -1,0 +1,99 @@
+facility_id,operator,campus_name,city,state,county,lat,lon,it_load_mw_est,it_load_source,egrid_subrgn,year_disclosed,confidence
+VA-ASH-001,Amazon Web Services,IAD Campus North,Ashburn,VA,Loudoun,39.043,-77.487,220,AWS Sustainability Report 2023,SRVC,2023,high
+VA-ASH-002,Microsoft Azure,MAD Campus,Ashburn,VA,Loudoun,39.038,-77.473,180,FERC Interconnection Filing 2023,SRVC,2023,high
+VA-ASH-003,Google,Ashburn Data Centre,Ashburn,VA,Loudoun,39.051,-77.461,150,Google Environmental Report 2023,SRVC,2023,high
+VA-ASH-004,Equinix,DC1-DC15 Ashburn,Ashburn,VA,Loudoun,39.045,-77.488,95,Equinix Annual Report 2023,SRVC,2023,high
+VA-ASH-005,Digital Realty,Ashburn Campus,Ashburn,VA,Loudoun,39.041,-77.479,110,Dominion IRP Queue 2024,SRVC,2023,high
+VA-ASH-006,Meta,Ashburn Data Centre,Ashburn,VA,Loudoun,39.047,-77.491,90,Meta Sustainability Report 2023,SRVC,2023,high
+VA-ASH-007,CyrusOne,Ashburn I/II,Ashburn,VA,Loudoun,39.039,-77.482,65,Dominion IRP Queue 2024,SRVC,2024,high
+VA-ASH-008,QTS Realty,Ashburn Campus,Ashburn,VA,Loudoun,39.042,-77.476,55,CBRE H1 2024,SRVC,2024,medium
+VA-ASH-009,Amazon Web Services,IAD Campus South,Ashburn,VA,Loudoun,39.034,-77.483,200,AWS Sustainability Report 2023,SRVC,2023,high
+VA-ASH-010,CoreSite,VA1-VA2,Reston,VA,Fairfax,38.952,-77.336,40,CoreSite Investor Relations 2023,SRVC,2023,medium
+VA-ASH-011,Microsoft Azure,Boydton Campus,Boydton,VA,Mecklenburg,36.674,-78.389,210,FERC Interconnection Filing 2022,SRVC,2022,high
+VA-ASH-012,Amazon Web Services,IAD Manassas,Manassas,VA,Prince William,38.751,-77.476,140,Dominion IRP Queue 2024,SRVC,2023,high
+VA-ASH-013,Google,Reston Data Centre,Reston,VA,Fairfax,38.958,-77.357,80,Google Environmental Report 2023,SRVC,2023,medium
+VA-ASH-014,Iron Mountain,VAC1,Bristow,VA,Prince William,38.720,-77.557,30,Iron Mountain Annual Report 2023,SRVC,2023,medium
+VA-ASH-015,Amazon Web Services,IAD Haymarket,Haymarket,VA,Prince William,38.810,-77.630,160,Dominion IRP Queue 2024,SRVC,2024,high
+VA-ASH-016,Vantage Data Centers,Ashburn Campus,Ashburn,VA,Loudoun,39.046,-77.484,120,Vantage Press Release 2023,SRVC,2023,medium
+VA-ASH-017,DataBank,IAD1,Ashburn,VA,Loudoun,39.040,-77.480,25,CBRE H1 2024,SRVC,2024,medium
+VA-ASH-018,Microsoft Azure,Leesburg Campus,Leesburg,VA,Loudoun,39.112,-77.563,175,Dominion IRP Queue 2024,SRVC,2024,high
+VA-ASH-019,Amazon Web Services,IAD Frederick,Frederick,VA,Frederick,39.173,-77.854,180,Dominion IRP Queue 2024,SRVC,2024,high
+VA-ASH-020,Apple,Maiden East,Maiden,NC,Catawba,35.579,-81.207,100,Apple Environmental Report 2023,SRVC,2023,high
+TX-DFW-001,Amazon Web Services,DFW North,Irving,TX,Dallas,32.921,-97.052,150,AWS Sustainability Report 2023,ERCT,2023,high
+TX-DFW-002,Microsoft Azure,DFW Campus,Irving,TX,Dallas,32.934,-97.071,140,Microsoft ESG Report 2023,ERCT,2023,high
+TX-DFW-003,Meta,Fort Worth Data Centre,Fort Worth,TX,Tarrant,32.748,-97.328,220,Meta Sustainability Report 2023,ERCT,2023,high
+TX-DFW-004,CyrusOne,DFW I-VII,Carrollton,TX,Dallas,32.954,-96.897,85,CyrusOne Annual Report 2023,ERCT,2023,medium
+TX-DFW-005,Equinix,DA1-DA6,Dallas,TX,Dallas,32.896,-97.038,60,Equinix Annual Report 2023,ERCT,2023,medium
+TX-DFW-006,QTS Realty,DFW Campus,Irving,TX,Dallas,32.908,-97.048,70,CBRE H1 2024,ERCT,2024,medium
+TX-DFW-007,Google,Fort Worth Data Centre,Midlothian,TX,Ellis,32.474,-96.999,160,Google Environmental Report 2023,ERCT,2023,high
+TX-DFW-008,Digital Realty,DFW Campus,Dallas,TX,Dallas,32.897,-96.870,75,Digital Realty Annual Report 2023,ERCT,2023,medium
+TX-DFW-009,Switch,Switch Texas,Grand Prairie,TX,Dallas,32.736,-97.019,120,Switch Annual Report 2023,ERCT,2023,medium
+TX-DFW-010,Amazon Web Services,DFW South,Allen,TX,Collin,33.092,-96.641,130,ERCOT Queue 2024,ERCT,2024,high
+TX-DFW-011,Oracle,Austin Data Centre,Austin,TX,Travis,30.267,-97.743,80,Oracle Annual Report 2023,ERCT,2023,medium
+TX-DFW-012,Rackspace,San Antonio Campus,San Antonio,TX,Bexar,29.424,-98.494,45,Rackspace Annual Report 2023,ERCT,2023,medium
+TX-DFW-013,Microsoft Azure,San Antonio Campus,San Antonio,TX,Bexar,29.421,-98.481,150,Microsoft ESG Report 2023,ERCT,2023,high
+TX-DFW-014,Meta,Eagle Mountain,Eagle Mountain,TX,Tarrant,32.902,-97.556,200,Meta Sustainability Report 2023,ERCT,2024,high
+TX-HOU-001,Amazon Web Services,Houston Campus,Houston,TX,Harris,29.760,-95.370,90,ERCOT Queue 2024,ERCT,2024,medium
+IL-CHI-001,Microsoft Azure,Chicago Campus,Elk Grove Village,IL,Cook,41.974,-87.987,100,Microsoft ESG Report 2023,RFCW,2023,high
+IL-CHI-002,Equinix,CH1-CH4,Chicago,IL,Cook,41.878,-87.629,45,Equinix Annual Report 2023,RFCW,2023,medium
+IL-CHI-003,Digital Realty,Chicago Campus,Elk Grove Village,IL,Cook,41.971,-87.970,60,Digital Realty Annual Report 2023,RFCW,2023,medium
+IL-CHI-004,CoreSite,CH1,Chicago,IL,Cook,41.883,-87.642,30,CoreSite Investor Relations 2023,RFCW,2023,medium
+IL-CHI-005,Google,Council Bluffs Campus,Council Bluffs,IA,Pottawattamie,41.259,-95.858,150,Google Environmental Report 2023,MROE,2023,high
+IL-CHI-006,Meta,DeKalb Campus,DeKalb,IL,DeKalb,41.934,-88.752,180,Meta Sustainability Report 2023,RFCW,2023,high
+IL-CHI-007,Amazon Web Services,Chicago Campus,Elk Grove Village,IL,Cook,41.969,-87.975,120,AWS Sustainability Report 2023,RFCW,2023,high
+IL-CHI-008,CyrusOne,CHI2,Carol Stream,IL,DuPage,41.916,-88.127,40,CBRE H1 2024,RFCW,2024,medium
+AZ-PHX-001,Microsoft Azure,Phoenix Campus,Goodyear,AZ,Maricopa,33.449,-112.358,130,Microsoft ESG Report 2023,AZNM,2023,high
+AZ-PHX-002,Google,Phoenix Data Centre,Chandler,AZ,Maricopa,33.301,-111.838,120,Google Environmental Report 2023,AZNM,2023,high
+AZ-PHX-003,Amazon Web Services,PHX Campus,Goodyear,AZ,Maricopa,33.436,-112.373,140,AWS Sustainability Report 2023,AZNM,2023,high
+AZ-PHX-004,Switch,Switch Phoenix,Mesa,AZ,Maricopa,33.413,-111.832,90,Switch Annual Report 2023,AZNM,2023,medium
+AZ-PHX-005,CyrusOne,PHX1-PHX2,Chandler,AZ,Maricopa,33.297,-111.830,50,CyrusOne Annual Report 2023,AZNM,2023,medium
+AZ-PHX-006,Equinix,SV1-SV8 (PHX),Phoenix,AZ,Maricopa,33.449,-112.074,35,Equinix Annual Report 2023,AZNM,2023,medium
+AZ-PHX-007,Iron Mountain,PHX1,Phoenix,AZ,Maricopa,33.452,-112.070,20,Iron Mountain Annual Report 2023,AZNM,2023,medium
+AZ-PHX-008,Microsoft Azure,Phoenix West,Avondale,AZ,Maricopa,33.434,-112.349,120,APS Interconnection Queue 2024,AZNM,2024,high
+AZ-PHX-009,Meta,Mesa Data Centre,Mesa,AZ,Maricopa,33.422,-111.831,160,Meta Sustainability Report 2023,AZNM,2023,high
+AZ-PHX-010,Amazon Web Services,PHX South,Chandler,AZ,Maricopa,33.287,-111.842,130,APS Interconnection Queue 2024,AZNM,2024,high
+GA-ATL-001,Google,Douglas County,Lithia Springs,GA,Douglas,33.680,-84.751,150,Google Environmental Report 2023,SRCE,2023,high
+GA-ATL-002,Microsoft Azure,Atlanta Campus,Atlanta,GA,Fulton,33.749,-84.388,100,Georgia Power Filing 2023,SRCE,2023,high
+GA-ATL-003,Amazon Web Services,ATL Campus,Lithia Springs,GA,Douglas,33.685,-84.742,120,AWS Sustainability Report 2023,SRCE,2023,high
+GA-ATL-004,Equinix,AT1-AT2,Atlanta,GA,Fulton,33.766,-84.383,30,Equinix Annual Report 2023,SRCE,2023,medium
+GA-ATL-005,QTS Realty,Atlanta Campus,Atlanta,GA,Fulton,33.771,-84.391,55,CBRE H1 2024,SRCE,2024,medium
+GA-ATL-006,CyrusOne,ATL1,Suwanee,GA,Gwinnett,34.054,-84.069,40,CyrusOne Annual Report 2023,SRCE,2023,medium
+GA-ATL-007,Meta,DeKalb County,Atlanta,GA,DeKalb,33.775,-84.314,140,Meta Sustainability Report 2023,SRCE,2023,high
+GA-ATL-008,Digital Realty,Atlanta Campus,Atlanta,GA,Fulton,33.758,-84.394,45,Digital Realty Annual Report 2023,SRCE,2023,medium
+OR-PDX-001,Amazon Web Services,PDX Campus,Hillsboro,OR,Washington,45.522,-122.940,220,AWS Sustainability Report 2023,NWPP,2023,high
+OR-PDX-002,Google,The Dalles Data Centre,The Dalles,OR,Wasco,45.600,-121.170,200,Google Environmental Report 2023,NWPP,2023,high
+OR-PDX-003,Meta,Prineville Campus,Prineville,OR,Crook,44.301,-120.840,150,Meta Sustainability Report 2023,NWPP,2023,high
+OR-PDX-004,Microsoft Azure,Quincy Campus,Quincy,WA,Grant,47.234,-119.852,180,Microsoft ESG Report 2023,NWPP,2023,high
+OR-PDX-005,Apple,Prineville Data Centre,Prineville,OR,Crook,44.296,-120.833,80,Apple Environmental Report 2023,NWPP,2023,high
+OR-PDX-006,Amazon Web Services,Boardman Campus,Boardman,OR,Morrow,45.839,-119.699,150,AWS Sustainability Report 2023,NWPP,2023,high
+OR-PDX-007,Equinix,SE2-SE4,Seattle,WA,King,47.599,-122.326,30,Equinix Annual Report 2023,NWPP,2023,medium
+CA-SJC-001,Equinix,SV1-SV12 San Jose,San Jose,CA,Santa Clara,37.339,-121.891,80,Equinix Annual Report 2023,CAMX,2023,medium
+CA-SJC-002,Google,Sunnyvale Data Centre,Sunnyvale,CA,Santa Clara,37.368,-122.036,100,Google Environmental Report 2023,CAMX,2023,high
+CA-SJC-003,Meta,Santa Clara Campus,Santa Clara,CA,Santa Clara,37.353,-121.953,90,Meta Sustainability Report 2023,CAMX,2023,high
+CA-SJC-004,Microsoft Azure,Silicon Valley,San Jose,CA,Santa Clara,37.334,-121.895,70,Microsoft ESG Report 2023,CAMX,2023,high
+CA-SJC-005,Digital Realty,SJC Campus,San Jose,CA,Santa Clara,37.341,-121.890,50,Digital Realty Annual Report 2023,CAMX,2023,medium
+CA-SJC-006,CoreSite,SV1-SV2,Santa Clara,CA,Santa Clara,37.352,-121.954,35,CoreSite Investor Relations 2023,CAMX,2023,medium
+CA-LAX-001,Equinix,LA1-LA4,Los Angeles,CA,Los Angeles,34.052,-118.244,40,Equinix Annual Report 2023,CAMX,2023,medium
+CA-LAX-002,CoreSite,LA1-LA2,Los Angeles,CA,Los Angeles,34.048,-118.258,25,CoreSite Investor Relations 2023,CAMX,2023,medium
+NY-NYC-001,Equinix,NY1-NY11,New York,NY,New York,40.748,-74.001,70,Equinix Annual Report 2023,NYUP,2023,medium
+NY-NYC-002,Digital Realty,NYC Campus,Secaucus,NJ,Hudson,40.791,-74.059,60,Digital Realty Annual Report 2023,NYUP,2023,medium
+NY-NYC-003,CyrusOne,NYC Metro,Secaucus,NJ,Hudson,40.785,-74.056,40,CyrusOne Annual Report 2023,NYUP,2023,medium
+NY-NYC-004,Amazon Web Services,NYC Campus,Piscataway,NJ,Middlesex,40.559,-74.465,80,AWS Sustainability Report 2023,NYUP,2023,medium
+NY-NYC-005,CoreSite,NY1-NY2,New York,NY,New York,40.752,-74.002,30,CoreSite Investor Relations 2023,NYUP,2023,medium
+NY-NYC-006,Google,New York Data Centre,New York,NY,New York,40.740,-74.002,50,Google Environmental Report 2023,NYUP,2023,medium
+NM-ABQ-001,Meta,Los Lunas Data Centre,Los Lunas,NM,Valencia,34.806,-106.728,200,Meta Sustainability Report 2023,AZNM,2023,high
+WA-SEA-001,Amazon Web Services,SEA Quincy,Quincy,WA,Grant,47.228,-119.847,200,AWS Sustainability Report 2023,NWPP,2023,high
+OH-COL-001,Amazon Web Services,CMH Campus,New Albany,OH,Franklin,40.081,-82.793,150,AWS Sustainability Report 2023,RFCW,2023,high
+OH-COL-002,Microsoft Azure,Columbus Campus,Dublin,OH,Franklin,40.099,-83.115,120,Microsoft ESG Report 2023,RFCW,2023,high
+NC-CLT-001,Google,Lenoir Data Centre,Lenoir,NC,Caldwell,35.914,-81.540,120,Google Environmental Report 2023,SRVC,2023,high
+NC-CLT-002,Apple,Maiden West,Maiden,NC,Catawba,35.582,-81.212,100,Apple Environmental Report 2023,SRVC,2023,high
+IA-DSM-001,Microsoft Azure,Des Moines,West Des Moines,IA,Dallas,41.578,-93.711,100,Microsoft ESG Report 2023,MROE,2023,high
+IA-DSM-002,Facebook/Meta,Altoona Campus,Altoona,IA,Polk,41.647,-93.479,200,Meta Sustainability Report 2023,MROE,2023,high
+SC-COL-001,Amazon Web Services,Columbia Campus,Blythewood,SC,Richland,34.217,-80.977,100,AWS Sustainability Report 2023,SRVC,2023,medium
+NV-LAS-001,Switch,The Citadel,Las Vegas,NV,Clark,36.116,-115.086,150,Switch Annual Report 2023,AZNM,2023,high
+NV-LAS-002,Equinix,LA6-LA8 (LAS),Las Vegas,NV,Clark,36.107,-115.181,20,Equinix Annual Report 2023,AZNM,2023,medium
+NV-RNO-001,Tesla,Gigafactory Data Infrastructure,Sparks,NV,Washoe,39.538,-119.440,30,Tesla Annual Report 2023,NWPP,2023,low
+MN-MSP-001,Microsoft Azure,Minneapolis Campus,Elk River,MN,Sherburne,45.303,-93.565,80,Microsoft ESG Report 2023,MROW,2023,medium
+CO-DEN-001,Amazon Web Services,Denver Campus,Aurora,CO,Arapahoe,39.729,-104.832,80,AWS Sustainability Report 2023,RMPA,2023,medium
+CO-DEN-002,CyrusOne,DEN1,Aurora,CO,Arapahoe,39.724,-104.827,30,CyrusOne Annual Report 2023,RMPA,2023,medium
+MI-DET-001,Google,Michigan Data Centre,Clarkston,MI,Oakland,42.736,-83.419,100,Google Environmental Report 2023,RFCW,2023,medium

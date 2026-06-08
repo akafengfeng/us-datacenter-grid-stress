@@ -7,7 +7,7 @@ https://creativecommons.org/licenses/by/4.0/
 ## Code (code/)
 MIT License
 
-Copyright (c) 2026 [Author Name]
+Copyright (c) 2026 Feng Wei, CAICT
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -28,4 +28,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## Data (data/)
-See data/README.md for the specific data license (CC0 or CC-BY 4.0).
+The facility dataset (`data/facilities/`) is released under Creative Commons Zero (CC0 1.0).
+The eGRID 2022 sub-region data (`data/egrid2022/`) is sourced from EPA (public domain).
+The EIA data (`data/eia/`) is sourced from EIA (public domain, US government work).
+See `data/README.md` for full details.

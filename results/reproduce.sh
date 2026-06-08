@@ -1,31 +1,49 @@
-#!/bin/bash
-# Reproduce all results from the paper
+#!/usr/bin/env bash
+# ============================================================
+# reproduce.sh — regenerates all key figures and tables
 # Run from the repository root: bash results/reproduce.sh
-#
-# Expected runtime: [document here]
-# Random seeds: [document here if applicable]
+# Requires: Python 3.11+, packages in code/requirements.txt
+# ============================================================
+set -euo pipefail
 
-set -e
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+CODE="$ROOT/code"
+RESULTS="$ROOT/results"
 
-echo "=== Reproducing results for [Paper Title] ==="
-echo "Started at: $(date)"
+echo "======================================================="
+echo "AIDER Reproduction Script"
+echo "Data Centre Grid Stress — Feng Wei, CAICT"
+echo "======================================================="
 
-# Step 1: Install dependencies
-echo "Step 1: Installing dependencies..."
-pip install -r code/requirements.txt
+# --- 0. Environment check
+echo "[0/5] Checking Python environment..."
+python3 -c "import numpy, pandas, sklearn, matplotlib, statsmodels, openpyxl" \
+    || { echo "ERROR: missing packages. Run: pip install -r code/requirements.txt"; exit 1; }
 
-# Step 2: Run experiments / computations
-echo "Step 2: Running experiments..."
-# python3 code/models/train.py
-# python3 code/analysis/run_analysis.py
+# --- 1. Verify data checksums
+echo "[1/5] Verifying data files..."
+python3 "$CODE/00_verify_data.py"
 
-# Step 3: Generate figures
-echo "Step 3: Generating figures..."
-# cd code/figures && for script in plot_*.py; do python3 "$script"; done && cd ../..
+# --- 2. Spatial clustering (Experiment 1)
+echo "[2/5] Running spatial clustering (Experiment 1)..."
+cd "$CODE"
+python3 02_clustering.py
 
-# Step 4: Compile paper (optional)
-# echo "Step 4: Compiling paper..."
-# cd paper && pdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex && cd ..
+# --- 3. Carbon analysis + DCGSI (Experiments 2 & 5)
+echo "[3/5] Computing carbon intensity and DCGSI (Experiments 2 & 5)..."
+python3 03_carbon_dcgsi.py
 
-echo "=== Done. Check paper/figures/ for output. ==="
-echo "Finished at: $(date)"
+# --- 4. Demand growth regression (Experiment 3)
+echo "[4/5] Running OLS regression with spatial diagnostics (Experiment 3)..."
+python3 04_regression.py
+
+# --- 5. Renewable Alignment Score (Experiment 4)
+echo "[5/5] Computing Renewable Alignment Scores (Experiment 4)..."
+python3 05_ras.py
+
+cd "$ROOT"
+echo ""
+echo "======================================================="
+echo "Reproduction complete. Outputs in results/:"
+ls "$RESULTS/figures/"
+echo "======================================================="

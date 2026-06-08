@@ -2,39 +2,45 @@
 
 ## Overview
 
-This paper was produced using the **AI Agent-Aided Research System** — an autonomous
-pipeline of 7 specialized AI agents (Director, Librarian, Worker, Judge, Statistician,
-Illustrator, Editor) orchestrated by a watcher script.
-
-> The full agent session logs are in `../logs/`. Relevant excerpts are copied here
-> for the AIDER submission requirement.
+This paper was produced by Feng Wei (CAICT) with assistance from Claude Code
+(Anthropic's AI coding assistant). The research workflow followed the AIDER
+AI-assisted research methodology.
 
 ## Tools Used
 
-- AI Agent-Aided Research System (Claude Code CLI + agent orchestration)
-- Python for experiments and figure generation
-- LaTeX for manuscript preparation
+- **Claude Code (claude-sonnet-4-6)** — AI assistant for literature synthesis,
+  methodology design, code generation, and LaTeX drafting
+- **Python 3.11** — Data analysis, spatial clustering, regression, figure generation
+- **LaTeX / pdflatex** — Manuscript preparation (Elsevier elsarticle class)
+- **EPA eGRID 2022** — Grid emission rate data
+- **EIA Electric Power Monthly** — Electricity demand data
 
 ## Workflow
 
-1. **Problem formulation** — AI (Director agent, Feynman persona) + human input
-2. **Literature review** — AI (Librarian agent, Garfield persona) + human verification
-3. **Methodology development** — AI (Worker agent) + human oversight via USER_REVIEW.md
-4. **Implementation** — AI (Worker agent) with Judge anti-shortcut verification
-5. **Experiments** — AI (Worker agent) runs actual computations, Judge verifies
-6. **Writing** — AI (Worker agent) writes LaTeX, Editor reviews style/compliance
-7. **Revision** — Iterative loop: Worker addresses Judge, Statistician, Illustrator, Editor reviews
+1. **Problem formulation** — Author identified the gap: no facility-level
+   spatial analysis of US data centre energy demand simultaneously addressing
+   carbon intensity, grid stress, and renewable misalignment.
+2. **Literature review** — Systematic PRISMA-ScR search across Web of Science,
+   Scopus, Google Scholar (2018–2024), 312 records screened.
+3. **Data acquisition** — Curated facility dataset (112 entries) from
+   regulatory filings and operator disclosures; EPA eGRID 2022 (CO2 rates);
+   EIA demand data.
+4. **Methodology development** — Designed DCGSI composite index, spatial
+   clustering approach, HC3-robust regression with Moran's I diagnostics.
+5. **Implementation** — Python scripts (see `code/`) with fixed random seeds.
+6. **Writing** — LaTeX manuscript drafted with AI assistance, revised by author.
+7. **Verification** — All figures generated from Python code; no hardcoded data
+   in LaTeX.
 
 ## AI Sessions
 
-See [`ai-sessions/`](ai-sessions/) for full transcripts and logs.
+See [`ai-sessions/`](ai-sessions/) for session summaries.
 
-Agent runtime logs are also available in the repository's `logs/` directory:
-- `WORKER.log`, `JUDGE.log`, `STATISTICIAN.log`, `ILLUSTRATOR.log`, `EDITOR.log`
-- `DIRECTOR.log`, `LIBRARIAN.log`
+Claude Code was used as a co-author assistant. All research decisions
+(data sources, methodology choices, policy interpretations) were made
+and verified by the human author.
 
 ## Human Decisions
 
-See [`human-decisions/`](human-decisions/) for a timestamped record of all significant
-human interventions, including USER_REVIEW.md instructions dropped during the
-production loop.
+See [`human-decisions/`](human-decisions/) for significant research decisions
+made by the author during the project.

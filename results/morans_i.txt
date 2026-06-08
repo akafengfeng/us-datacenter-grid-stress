@@ -1,0 +1,4 @@
+Moran's I = -0.1683
+z-score   = -0.630
+p-value   ≈ 1.227
+Spatial weights bandwidth = 500 km
