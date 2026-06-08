@@ -15,7 +15,7 @@ RANDOM_SEED = 42
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 RESULTS_DIR = os.path.join(ROOT_DIR, "results")
-FIGURES_DIR = os.path.join(RESULTS_DIR, "figures")
+FIGURES_DIR = os.path.join(ROOT_DIR, "paper", "figures")
 
 EGRID_FILE = os.path.join(DATA_DIR, "egrid2022", "eGRID2022_data.xlsx")
 EGRID_SHEET = "SUBRGN22"

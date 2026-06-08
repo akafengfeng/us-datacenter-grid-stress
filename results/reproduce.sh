@@ -42,6 +42,11 @@ echo "[5/5] Computing Renewable Alignment Scores (Experiment 4)..."
 python3 05_ras.py
 
 cd "$ROOT"
+
+# Sync figures to results/figures/ for reproducibility record
+mkdir -p "$RESULTS/figures"
+cp "$ROOT/paper/figures/"*.pdf "$RESULTS/figures/" 2>/dev/null || true
+
 echo ""
 echo "======================================================="
 echo "Reproduction complete. Outputs in results/:"

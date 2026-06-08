@@ -57,3 +57,8 @@ paper_seed.json
 *.log
 *.out
 *.synctex.gz
+
+# Track paper figures and compiled manuscript
+!paper/figures/*.pdf
+!paper/main.pdf
+!results/figures/*.pdf
