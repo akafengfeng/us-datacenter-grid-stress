@@ -129,6 +129,69 @@ def print_summary(df: pd.DataFrame, r_nat: float):
               f"(RAS = {row['ras']:.2f})")
 
 
+def plot_renewable_alignment(df: pd.DataFrame, nat_avg: float = 0.224):
+    """
+    Horizontal bar chart: renewable fraction (%) per market vs US national
+    average (22.4 %, EIA Table 1.1, 2023).  Markets whose bar falls left of
+    the dashed line have below-average renewable penetration.
+    """
+    # Sort ascending so highest value is at top in barh
+    sorted_df = df.sort_values("renew_frac", ascending=True)
+
+    colors = [
+        "#34D399" if v >= nat_avg else "#F87171"
+        for v in sorted_df["renew_frac"]
+    ]
+
+    fig, ax = plt.subplots(figsize=(8.5, 5.0))
+
+    bars = ax.barh(
+        sorted_df["market"],
+        sorted_df["renew_frac"] * 100,
+        color=colors,
+        alpha=0.85,
+        edgecolor="white",
+        linewidth=0.5,
+    )
+
+    ax.axvline(nat_avg * 100, color="#1F2937", linestyle="--", linewidth=1.5,
+               label=f"US national average ({nat_avg*100:.1f}%, EIA 2023)")
+
+    ax.set_xlabel("Renewable electricity fraction (% of net generation, 2023)",
+                  fontsize=9)
+    ax.set_title(
+        "Renewable electricity fraction by US data centre market (2023)\n"
+        "Markets to the left of the dashed line have below-average renewable penetration",
+        fontsize=10,
+    )
+
+    # Value labels
+    for bar, val in zip(bars, sorted_df["renew_frac"] * 100):
+        offset = 0.5
+        ax.text(val + offset, bar.get_y() + bar.get_height() / 2,
+                f"{val:.1f}%", va="center", fontsize=8)
+
+    # Legend patches
+    from matplotlib.patches import Patch
+    legend_elements = [
+        Patch(facecolor="#34D399", alpha=0.85, label="Above national average"),
+        Patch(facecolor="#F87171", alpha=0.85, label="Below national average"),
+    ]
+    handles, _ = ax.get_legend_handles_labels()
+    ax.legend(handles=handles + legend_elements, fontsize=8, loc="lower right")
+
+    ax.set_xlim(0, max(sorted_df["renew_frac"].max() * 100 * 1.18, 30))
+    ax.grid(axis="x", linestyle=":", alpha=0.4)
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+
+    fig.tight_layout()
+    out = os.path.join(FIGURES_DIR, "fig_renewable_alignment.pdf")
+    fig.savefig(out, dpi=300, bbox_inches="tight")
+    plt.close(fig)
+    print(f"Saved: fig_renewable_alignment.pdf")
+
+
 if __name__ == "__main__":
     df = compute_ras(MARKETS.copy())
     r_nat = df["r_nat"].iloc[0]
@@ -139,3 +202,4 @@ if __name__ == "__main__":
     print(f"\nSaved: ras_scores.csv")
 
     plot_ras(df, r_nat)
+    plot_renewable_alignment(df)
