@@ -306,25 +306,13 @@ by a second reader (inter-rater agreement 84\%, Cohen's
 $\kappa = 0.78$, 95\% CI [0.67, 0.89]). The OpenAlex query string and
 Python classification code are archived in the supplementary repository.
 
-Fig.~\ref{fig:biblio} shows publication growth from 2018 to 2024.
-Annual counts grew at approximately 18\%/yr through 2021, then
+Annual publication counts grew at approximately 18\%/yr through 2021, then
 accelerated to 51\%/yr in 2022--2024, coinciding with the public release
 of large language models. The 2024 estimate (extrapolated from ten months
 of data) is 1{,}187 papers. Critically, studies addressing spatial or
 geographic aspects of data centre energy constitute only 11.4\% of the
 classified corpus---a systematic underrepresentation of the problem
 examined in this paper.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.82\textwidth]{figures/fig_biblio.pdf}
-\caption{Annual publication counts in the data centre energy literature
-(OpenAlex, $n=4{,}312$ classified records, 2018--2024). Orange series
-shows the subset addressing spatial or geographic aspects, which remains
-systematically underweighted. All counts and the classification script
-are in \texttt{code/00\_bibliometrics.py}.}
-\label{fig:biblio}
-\end{figure}
 
 Among the 52 included studies, Level~A (quantitative benchmark) studies
 are concentrated in energy demand estimation (27 of 33) and grid
@@ -603,20 +591,10 @@ market---has no economically competitive wind resource and limited
 solar potential. The Pacific Northwest's hydropower advantage is
 underutilised by data centres: the region hosts only 5.5\% of
 national capacity despite its carbon intensity of 136\,gCO$_2$/kWh
-being 2.6$\times$ lower than the fleet average. Fig.~\ref{fig:renewable}
-shows renewable fractions for each market against the national average
-(22.4\% in 2023, EIA Table 1.1).
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.80\textwidth]{figures/fig_renewable_alignment.pdf}
-\caption{Renewable electricity fraction (\% of net generation, 2023) for
-each primary data centre market compared with the US national average
-(22.4\%, EIA Electric Power Monthly, Table 1.1). Markets to the left
-of the dashed line have below-average renewable penetration.
-Code: \texttt{code/05\_ras.py}.}
-\label{fig:renewable}
-\end{figure}
+being 2.6$\times$ lower than the fleet average. Renewable fractions
+for the eight primary markets range from 12.4\% (Phoenix) to 72.1\%
+(Pacific Northwest), with the US national average at 22.4\%
+(EIA Table 1.1, 2023).
 
 %%====================================================================
 %% 8. DATA CENTRE GRID STRESS INDEX (DCGSI)
