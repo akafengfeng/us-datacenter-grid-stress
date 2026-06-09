@@ -49,7 +49,9 @@ Index (DCGSI): a validated composite metric computed across 68 US balancing
 authorities from four independently sourced components---demand velocity
 (EIA Electric Power Monthly), colocation density (facility dataset),
 transmission headroom (NERC 2024 Long-Term Reliability Assessment), and
-renewable deficit (EPA eGRID 2022). The dataset and all analysis code are
+renewable deficit (EPA eGRID 2022)---with equal baseline weights ($w=0.25$
+per component) justified by the absence of empirical calibration data
+\cite{oecd2008handbook}. The dataset and all analysis code are
 publicly available in the supplementary repository.
 
 Five states (Virginia, Texas, Georgia, Arizona, and Illinois) concentrate
@@ -1049,6 +1051,21 @@ RMI's analysis projects a potential 25--35\% reduction in fleet-average
 carbon intensity from these two corridors alone, at a levelised
 transmission cost of \$2--4/MWh for the data centre load served.
 
+\subsection{Implementation priorities and sequencing}
+\label{subsec:policy_sequencing}
+
+The five interventions differ in their implementation timelines and
+institutional requirements. Location-differentiated tariffs and DCGSI-conditioned
+incentive reform are achievable within existing regulatory frameworks (12--24
+months); 24/7 CFE reporting requires federal or state rulemaking (18--36
+months); transmission investment operates on 5--10 year timescales subject
+to FERC approval and permitting. The interventions are complementary: tariff
+reform reduces demand concentration while transmission investment expands the
+clean energy supply that CFE mandates would require. Sequencing should
+prioritise tariff reform first---it requires no new infrastructure and
+provides immediate price signals---followed by CFE reporting to build market
+transparency, with transmission investment as the longer-term structural fix.
+
 %%====================================================================
 %% 11. COMPARISON WITH EXISTING LITERATURE
 %%====================================================================
@@ -1144,11 +1161,13 @@ market-level grid stress.
 \section{Conclusions}
 \label{sec:conclusions}
 
-This paper provides the first open-access, facility-level spatial analysis
-of AI data centre electricity demand concentration and its grid consequences
+Based on the 52-study systematic scoping review (Section~\ref{sec:literature}),
+in which only 11.4\% of classified records address spatial or geographic
+aspects of data centre energy, this paper provides, to the best of our
+knowledge, the first open-access, facility-level spatial analysis of AI
+data centre electricity demand concentration and its grid consequences
 in the United States, combining a 312-facility dataset (with full source
-documentation), a 52-study systematic review, and five reproducible
-quantitative experiments.
+documentation) and five reproducible quantitative experiments.
 
 The spatial concentration finding is unambiguous and statistically robust:
 five states host 71\% of national hyperscale capacity, and Northern
