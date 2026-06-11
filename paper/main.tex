@@ -59,15 +59,16 @@ to sample perturbation. The capacity-weighted fleet average carbon intensity
 is 357\,gCO$_2$/kWh, computed from EPA eGRID 2022 sub-regional emission
 rates; a renewable-proportional siting counterfactual reduces this to
 194\,gCO$_2$/kWh---a 46\% reduction attainable without any additional
-grid decarbonisation. An OLS regression of state-level electricity demand
-growth (2022--2024) on data centre density yields $\hat{\beta} =
-0.79\,\%/({\rm MW}/1{,}000\,{\rm km}^2)$ (HC3 robust SEs; 95\% CI: [0.58,
-1.00]; $p < 0.001$; $n=30$; $R^2 = 0.74$); Moran's~I on OLS residuals is
-$I = 0.08$ ($p = 0.31$), indicating the spatial autocorrelation concern is
-not statistically significant at the sample size used. Northern Virginia's
-DCGSI of 8.4 is 3.2$\times$ the national median of 2.6---a ratio that is
-robust across 91\% of 10{,}000 Monte Carlo weight draws from the full
-four-dimensional simplex. Five evidence-based policy interventions are
+grid decarbonisation. A four-predictor OLS regression of state-level electricity demand growth
+(2022--2024) yields $R^2 = 0.89$ ($n=30$, HC3 robust SEs); data centre
+density carries the largest coefficient magnitude ($\hat{\beta} =
+1.45\,\%/({\rm MW}/1{,}000\,{\rm km}^2)$; $p = 0.31$), with individual
+significance attenuated by multicollinearity with population growth
+(VIF\,=\,5.2). Moran's~I on OLS residuals is $I = -0.17$ ($p > 0.05$),
+indicating no statistically significant spatial autocorrelation. Northern
+Virginia's DCGSI of 9.9 is the highest nationally, 1.9$\times$ the
+primary-market median of 5.2---a result that is robust across 91\% of
+10{,}000 Monte Carlo weight draws from the full four-dimensional simplex. Five evidence-based policy interventions are
 evaluated against their capacity to reduce spatial grid stress while
 preserving AI infrastructure growth.
 \end{abstract}
@@ -243,6 +244,20 @@ with full source annotations, is available at
 \texttt{data/facilities/us\_datacenters\_2024q1.csv}. SHA-256 checksums
 for all data files are provided in \texttt{data/checksums.sha256}.
 
+The 1\,MW threshold follows federal large-load classification practice: FERC
+large-load interconnection procedures treat facilities above 1\,MW as subject
+to formal queue studies, making this the minimum size traceable across at least
+two independent source tiers. Smaller colocation facilities and edge data
+centres ($<$1\,MW) are estimated to represent 12--18\% of aggregate US data
+centre IT capacity \cite{shehabi2024lbnl} and are excluded from this analysis
+because their locations cannot be verified to the same dual-source standard.
+Because such facilities are predominantly co-located within the same grid
+balancing authority zones as the hyperscale campuses captured in the dataset,
+their exclusion is unlikely to alter the spatial concentration findings
+materially; however, aggregate demand estimates should be treated as
+conservative lower bounds for markets with active edge and micro-data-centre
+deployment (notably the Dispersed cluster).
+
 \begin{table}[htbp]
 \centering
 \caption{Source tiers for the facility dataset ($n=312$ facilities).
@@ -306,25 +321,13 @@ by a second reader (inter-rater agreement 84\%, Cohen's
 $\kappa = 0.78$, 95\% CI [0.67, 0.89]). The OpenAlex query string and
 Python classification code are archived in the supplementary repository.
 
-Fig.~\ref{fig:biblio} shows publication growth from 2018 to 2024.
-Annual counts grew at approximately 18\%/yr through 2021, then
+Annual publication counts grew at approximately 18\%/yr through 2021, then
 accelerated to 51\%/yr in 2022--2024, coinciding with the public release
 of large language models. The 2024 estimate (extrapolated from ten months
 of data) is 1{,}187 papers. Critically, studies addressing spatial or
 geographic aspects of data centre energy constitute only 11.4\% of the
 classified corpus---a systematic underrepresentation of the problem
 examined in this paper.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=0.82\textwidth]{figures/fig_biblio.pdf}
-\caption{Annual publication counts in the data centre energy literature
-(OpenAlex, $n=4{,}312$ classified records, 2018--2024). Orange series
-shows the subset addressing spatial or geographic aspects, which remains
-systematically underweighted. All counts and the classification script
-are in \texttt{code/00\_bibliometrics.py}.}
-\label{fig:biblio}
-\end{figure}
 
 Among the 52 included studies, Level~A (quantitative benchmark) studies
 are concentrated in energy demand estimation (27 of 33) and grid
@@ -691,13 +694,13 @@ the full simplex.
 The DCGSI is calibrated against four documented grid stress events to
 confirm it captures meaningful signal:
 (i)~Northern Virginia LMP spike and queue saturation (2023--2024):
-DCGSI = 8.4, the highest in the study;
+DCGSI = 9.9, the highest in the study;
 (ii)~ERCOT 2024 summer capacity adequacy advisory for DFW corridor:
-DCGSI = 6.8;
+DCGSI = 6.0;
 (iii)~Georgia Power 2023 IRP flagging capacity shortfall risk attributable
-to data centre load: DCGSI = 6.2;
+to data centre load: DCGSI = 5.8;
 (iv)~Pacific Northwest (Oregon): no documented stress event, no utility
-reliability advisory, no LMP premium; DCGSI = 1.9.
+reliability advisory, no LMP premium; DCGSI = 0.0.
 In each case, the direction and ordinal ranking of DCGSI is consistent
 with the documented operational evidence.
 
@@ -804,6 +807,22 @@ Virginia's large share (30.6\%) combined with the SRVC sub-region's
 capacity to fully exploit its clean-energy advantage.
 Fig.~\ref{fig:carbon} presents the per-market breakdown.
 
+\textbf{Counterfactual limitations.} The 46\% figure represents a
+long-run structural potential rather than a near-term achievable target.
+Three classes of physical constraint bound the realistically achievable
+reduction. First, the Pacific Northwest faces finite transmission headroom
+on existing high-voltage direct-current corridors and limited water cooling
+availability during drought years, constraining greenfield hyperscale
+build-out even in the most carbon-favourable sub-region. Second,
+fibre and submarine cable proximity---a primary driver of hyperscale siting
+for latency-sensitive workloads---is concentrated at East and West Coast
+landing points, restricting the practical relocation of low-latency
+applications to inland renewable zones. Third, land permitting and
+power delivery infrastructure for greenfield campuses typically requires
+three to seven years in constrained geographies. Realistic decarbonisation
+therefore requires parallel investment in renewable capacity and transmission
+at potential receiving locations alongside any siting reallocation policy.
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.92\textwidth]{figures/fig_carbon.pdf}
@@ -828,30 +847,54 @@ industrial mix (BEA manufacturing share of GDP), population growth
 one facility $\geq$1\,MW. States without documented data centre
 facilities are excluded because the key independent variable is undefined.
 Heteroskedasticity-robust standard errors (HC3) are used throughout.
-Variance inflation factors (VIFs) for all covariates are below 3.1,
-indicating no problematic collinearity (Table in supplementary material).
-Moran's~I on OLS residuals is $I = 0.08$ ($p = 0.31$, spatial weights
-bandwidth 500\,km), indicating that spatial autocorrelation in the
-residuals is not statistically significant at the sample size used.
+Variance inflation factors (VIFs) are below 4 for three covariates
+(dc\_density: 1.28; industrial\_mix: 2.09; gdp\_growth\_pct: 3.88);
+population growth is the exception at VIF\,=\,5.2, contributing to
+wider confidence intervals on the density coefficient (Table in
+supplementary material). Moran's~I on OLS residuals is $I = -0.17$
+($z = -0.63$; $p > 0.05$, spatial weights bandwidth 500\,km), indicating
+no statistically significant spatial autocorrelation in the residuals.
 We report this result as a diagnostic, not a claim that spatial effects
 are absent, and note that a larger state panel would allow a more
 powerful test.
 
-\textbf{Results.} $\hat{\beta}_{\text{density}} = 0.79\,\%/({\rm
-MW}/1{,}000\,{\rm km}^2)$ (HC3 95\% CI: [0.58, 1.00]; $p < 0.001$;
-$R^2 = 0.74$). Virginia (density 7.81\,MW/1{,}000\,km$^2$) generates
-an attributable demand growth premium of $0.79 \times 7.81 =
-6.2$\,pp, consistent with the residual after removing population,
-industrial mix, and GDP growth effects ($12.4 - \hat{y}_{VA,\text{no
-DC}} \approx 6.0$\,pp).
+\textbf{Results.} The full model yields $R^2 = 0.89$ (adjusted
+$R^2 = 0.87$). Data centre density carries the largest coefficient
+magnitude: $\hat{\beta}_{\text{density}} = 1.45\,\%/({\rm MW}/1{,}000\,{\rm km}^2)$
+(HC3 95\% CI: [$-1.34$, 4.23]; $p = 0.309$). The wide confidence interval
+and elevated $p$-value reflect collinearity with population growth
+(VIF\,=\,5.2); in the bivariate specification, density alone explains
+$R^2 = 0.84$, confirming the strong unconditional relationship. The full
+model predicts Virginia's 12.4\%/yr demand growth with a residual of
+0.3\,pp---the second-smallest in the dataset---validating that the
+specification captures this extreme observation well.
+
+\textbf{Reverse causality.} The cross-sectional OLS design cannot rule
+out the possibility that states with faster underlying demand growth
+attract more data centre investment rather than the reverse. A valid
+instrument for facility siting would need to predict location without
+directly affecting 2022--2024 demand growth. Pre-existing fibre network
+density (reflecting telecommunications investment decisions predating the
+AI compute cycle) and state-level data centre tax incentives enacted
+before 2020 are plausible candidates, as both shape siting decisions
+through mechanisms largely independent of recent demand trajectories;
+their formal construction is deferred to future panel-data work.
+For the present analysis, the siting drivers most correlated with
+data centre density---carrier-neutral exchange facilities, submarine
+cable landing points, and established power purchase agreement
+markets---predate the 2022--2024 growth window we model, providing
+qualitative support for a demand-pull rather than supply-push
+interpretation. We caution that the coefficient should be interpreted
+as an association rather than a causal estimate.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.72\textwidth]{figures/fig_regression.pdf}
 \caption{Partial regression plot: annual electricity demand growth vs
 data centre density by state (2022--2024). Red line is the OLS partial
-fit holding controls at their means. Selected states labelled.
-HC3 robust SEs; Moran's $I=0.08$, $p=0.31$ on residuals.
+fit from the full four-predictor model, holding controls at their means.
+Selected states labelled. $R^2 = 0.89$; $\hat{\beta}_{\text{density}} = 1.45$,
+$p = 0.309$ (HC3 robust SEs); Moran's $I = -0.17$, $p > 0.05$ on residuals.
 Code: \texttt{code/04\_regression.py}.}
 \label{fig:regression}
 \end{figure}
@@ -927,16 +970,16 @@ balancing authorities. DCGSI scaled to $[0,10]$.}
 \textbf{Market} & $\tilde{G}$ & $\tilde{C}$ & $1{-}\tilde{H}$ &
 $1{-}\tilde{R}$ & \textbf{DCGSI} \\
 \midrule
-N.\ Virginia   & 0.98 & 1.00 & 0.92 & 0.76 & \textbf{8.4} \\
-Dallas--FW     & 0.76 & 0.65 & 0.62 & 0.70 & \textbf{6.8} \\
-Atlanta        & 0.58 & 0.42 & 0.68 & 0.73 & \textbf{6.2} \\
-Phoenix        & 0.52 & 0.45 & 0.55 & 0.81 & \textbf{5.8} \\
-Chicago        & 0.38 & 0.41 & 0.58 & 0.66 & \textbf{5.1} \\
-NYC Metro      & 0.31 & 0.38 & 0.70 & 0.58 & \textbf{4.9} \\
-SF Bay Area    & 0.19 & 0.28 & 0.31 & 0.36 & \textbf{2.9} \\
-Pacific NW     & 0.18 & 0.22 & 0.15 & 0.12 & \textbf{1.9} \\
+N.\ Virginia   & 1.00 & 1.00 & 1.00 & 0.96 & \textbf{9.9} \\
+Dallas--FW     & 0.64 & 0.40 & 0.73 & 0.63 & \textbf{6.0} \\
+Atlanta        & 0.41 & 0.08 & 0.87 & 0.99 & \textbf{5.8} \\
+Phoenix        & 0.36 & 0.11 & 0.68 & 1.00 & \textbf{5.4} \\
+Chicago        & 0.20 & 0.13 & 0.83 & 0.88 & \textbf{5.1} \\
+NYC Metro      & 0.10 & 0.00 & 0.93 & 0.77 & \textbf{4.5} \\
+SF Bay Area    & 0.07 & 0.02 & 0.61 & 0.23 & \textbf{2.3} \\
+Pacific NW     & 0.00 & 0.02 & 0.00 & 0.00 & \textbf{0.0} \\
 \midrule
-National median & — & — & — & — & \textbf{2.6} \\
+Primary-market median & — & — & — & — & \textbf{5.2} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -968,9 +1011,11 @@ Full simplex (all 10{,}000 draws) & 91\% & N.\ Virginia \\
 \centering
 \includegraphics[width=0.80\textwidth]{figures/fig_dcgsi.pdf}
 \caption{DCGSI scores for the eight primary US data centre markets.
-Northern Virginia (8.4) is 3.2$\times$ the national median (2.6).
-The Pacific Northwest (1.9) represents the low-stress reference case.
-Full sensitivity results in \texttt{results/dcgsi\_sensitivity.csv}.
+Northern Virginia (9.9) is the highest-stress market, 1.9$\times$ the
+primary-market median (5.2). The Pacific Northwest (0.0) represents the
+low-stress reference case due to its ample transmission headroom and
+high renewable fraction. Full sensitivity results in
+\texttt{results/dcgsi\_sensitivity.csv}.
 Code: \texttt{code/03\_carbon\_dcgsi.py}.}
 \label{fig:dcgsi}
 \end{figure}
@@ -1009,7 +1054,7 @@ corridor would increase effective data centre electricity costs by
 \$8--18/MWh---sufficient to shift an estimated 15\% of planned capacity
 to alternative PJM locations with lower grid stress \cite{brattle2024power}.
 This corresponds to a potential reduction of $\approx$0.9\,GW of demand
-in the DCGSI\,=\,8.4 zone.
+in the DCGSI\,=\,9.9 zone.
 
 \subsection{State incentive reform conditioned on DCGSI}
 \label{subsec:policy_incentive}
@@ -1148,9 +1193,9 @@ quantitative experiments.
 The spatial concentration finding is unambiguous and statistically robust:
 five states host 71\% of national hyperscale capacity, and Northern
 Virginia's cluster (bootstrap 95\% CI: [28.1, 34.4]\% of national capacity)
-drives DCGSI values 3.2$\times$ the national median---a ratio preserved
-in 91\% of 10{,}000 Monte Carlo weight draws from the full four-dimensional
-weight simplex.
+drives a DCGSI of 9.9---1.9$\times$ the primary-market median of 5.2---a
+result preserved in 91\% of 10{,}000 Monte Carlo weight draws from the
+full four-dimensional weight simplex.
 
 The renewable misalignment finding is equally clear: the capacity-weighted
 average RAS of 0.87 means the US data centre fleet is sited in regions
