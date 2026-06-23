@@ -545,7 +545,6 @@ All changes have been verified through:
 2. **Numerical Verification:** All outputs regenerated and compared to committed results
 3. **Manuscript Alignment:** All paper values traced to code outputs
 4. **Reference Verification:** All 17 references tested for accessibility; 0 fabricated
-5. **Peer Review:** Comprehensive 474-line peer review (9/10 quality score)
 
 ---
 
