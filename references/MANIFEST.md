@@ -248,7 +248,7 @@
 | **Year** | 2022 |
 | **Type** | Industry technical standard |
 | **Status** | Published |
-| **Access** | https://energytag.org |
+| **Access** | https://energytag.org/standards |
 | **Verified** | ✅ YES |
 
 ---
