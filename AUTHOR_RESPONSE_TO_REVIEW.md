@@ -560,14 +560,12 @@ I have comprehensively addressed all 15+ critical issues identified by the revie
 - ✅ **Transparency:** Complete documentation and end-to-end reproduction
 - ✅ **Professional standards:** Appropriate cautions on interpretation and limitations
 
-I am confident that the manuscript is now publication-ready and meets the highest standards for academic rigor and integrity. I welcome any additional questions or concerns from the reviewer or the editorial team.
+I welcome any additional questions or concerns from the reviewer or the editorial team.
 
 ---
 
 **Submitted by:** Feng Wei  
-**Date:** June 23, 2026  
-**Quality Score:** 9/10  
-**Recommendation:** Ready for Publication
+**Date:** June 23, 2026
 
 ---
 
