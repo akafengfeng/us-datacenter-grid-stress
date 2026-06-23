@@ -273,7 +273,9 @@ I welcome any additional questions from the reviewer or editorial team.
 
 ## Note on Methodology
 
-This research was conducted with assistance from Claude, an AI research tool. While I directed all research strategy and validated every result, Claude assisted with code development, statistical implementation, and comprehensive verification procedures. This collaborative approach proved valuable for error detection—systematic verification at each step caught issues before submission that manual review alone might have missed.
+This research was conducted with assistance from Claude, an AI research tool. I directed the research strategy and validated all results, but I must be honest: the initial submission contained multiple errors that originated from AI-assisted code and analysis. Specifically, Claude implemented hardcoded data, incorrect statistical formulas, and flawed methodology implementations—issues I should have caught during initial review.
+
+The corrections documented in this response reflect my responsibility to identify and fix these mistakes. The experience demonstrates both the utility of AI in research acceleration and the non-negotiable importance of rigorous human oversight at every step. AI can produce plausible-sounding but incorrect results; human verification is essential, not optional.
 
 ---
 
