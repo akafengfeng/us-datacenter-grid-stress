@@ -67,8 +67,9 @@ def load_egrid(sheet: str = EGRID_SHEET) -> pd.DataFrame:
         df[col] = pd.to_numeric(df[col], errors="coerce")
 
     df["co2_g_kwh"] = df["co2_lb_mwh"] * LB_MWH_TO_G_KWH / 1000
-    df["renewable_frac"] = df["hydro_frac"].fillna(0) + \
-                           df["nonhydro_renew_frac"].fillna(0)
+    # eGRID CSV stores fractions as percentages (0-100), convert to decimals
+    df["renewable_frac"] = (df["hydro_frac"].fillna(0) + \
+                           df["nonhydro_renew_frac"].fillna(0)) / 100
     df = df.dropna(subset=["co2_lb_mwh"]).set_index("subrgn")
     print(f"eGRID sub-regions loaded: {len(df)}")
     return df

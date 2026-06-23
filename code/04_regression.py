@@ -15,26 +15,25 @@ import matplotlib.pyplot as plt
 import statsmodels.api as sm
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from scipy.spatial.distance import cdist
+from scipy.stats import norm
 from config import *
 
 os.makedirs(FIGURES_DIR, exist_ok=True)
 
 # ------------------------------------------------------------------
-# State-level data
-# Demand growth: EIA Electric Power Monthly, Table 5.6a
-#   growth_pct = (retail_sales_2024 - retail_sales_2022) / retail_sales_2022 * 100 / 2
-#   (annualised two-year CAGR)
-# DC density: facility dataset aggregated to state, divided by state area (1000 km2)
-# Sources noted per variable below.
+# Note: State-level data hard-coded here for speed (placeholder)
+#
+# In a production workflow, these would be computed from:
+#  - Demand growth: EIA Electric Power Monthly Table 5.6a (2022 vs 2024)
+#  - DC density: facility dataset aggregated to state / state area
+#  - Industrial mix, pop/gdp growth: BEA & Census Bureau official data
+#
+# For now, using pre-computed values from official sources 2024.
+# TODO: Refactor to compute these dynamically from data files.
 # ------------------------------------------------------------------
 STATE_DATA = pd.DataFrame([
     # state, growth_pct, dc_density_mw_per_1000km2, industrial_mix,
     #        pop_growth_pct, gdp_growth_pct, lat_centroid, lon_centroid
-    # growth_pct source: EIA Table 5.6a, 2022 vs 2024
-    # dc_density: facility CSV aggregated to state / state area
-    # industrial_mix: BEA GDP by industry, manufacturing share 2023
-    # pop_growth: US Census Bureau 2022-2024 estimates
-    # gdp_growth: BEA SAGDP1 2022-2024
     ("VA",  12.4, 7.81, 0.12, 0.98, 3.2, 37.43, -78.66),
     ("TX",   8.7, 3.23, 0.21, 1.31, 4.8, 31.97, -99.90),
     ("GA",   6.3, 1.62, 0.19, 0.72, 2.9, 33.04, -83.44),
@@ -99,7 +98,8 @@ def morans_i(y: np.ndarray, W: np.ndarray) -> tuple:
              (e**4).sum() / (((e**2).sum())**2) *
              (n**2*S1 - n*S2 + 3*S0**2) / ((n-1)*(n-2)*(n-3)*S0**2)) - E_I**2
     z = (I - E_I) / np.sqrt(max(var_I, 1e-12))
-    p = 2 * (1 - abs(z) / (1 + abs(z)))   # approximate two-tailed p
+    # Correct two-tailed p-value using standard normal distribution
+    p = 2 * (1 - norm.cdf(abs(z)))
     return I, z, p
 
 

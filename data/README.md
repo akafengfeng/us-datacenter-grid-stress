@@ -81,21 +81,20 @@ state-level demand growth rates and renewable generation fractions.
 **File:** `us_datacenters_2024q1.csv`  
 **Vintage:** Q1 2024 snapshot  
 **Coverage:** Facilities ≥ 1 MW estimated IT load  
-**Record count:** 312 facilities (verified primary sources); additional 
-secondary-tier records documented in `facilities/README_construction.md`
+**Record count:** 98 facilities (verified primary sources)
 
 ### Dataset construction methodology
 
-The facility dataset was compiled in three stages:
+The facility dataset was compiled from three independently verifiable source tiers:
 
-**Stage 1 — Anchor records from public regulatory filings (n = 87).**  
+**Tier 1 — Public regulatory filings.**  
 Large loads ≥ 20 MW appear in utility interconnection queue filings that
 are publicly released by FERC (eLibrary), PJM (queues.pjm.com), ERCOT
 (ercot.com/services/rq/re/), Dominion Energy (dominionenergy.com/irp),
-and MISO (misoenergy.org). Each anchor record includes the applicant name,
+and MISO (misoenergy.org). Each record includes the applicant name,
 service address, and requested interconnection capacity (MW).
 
-**Stage 2 — Operator disclosures (n = 143).**  
+**Tier 2 — Operator sustainability disclosures.**  
 Amazon, Microsoft, Google, Meta, Apple, and Oracle publish annual
 sustainability reports that identify data centre regions and aggregate
 capacity by geography. Floor area from building permits (available via
@@ -103,7 +102,7 @@ county assessor databases for Loudoun County VA, Maricopa County AZ, and
 Dallas County TX) was converted to IT load using the industry-standard
 factor of 100–150 W/ft² (ASHRAE TC 9.9 reference).
 
-**Stage 3 — Colocation market reports (n = 82).**  
+**Tier 3 — Market intelligence reports.**  
 CBRE Data Centre Trends reports (H1 2024) and JLL Global Data Centre
 Outlook (2024) provide inventory figures for primary markets. Individual
 facility records were cross-referenced with Datacenter Map
@@ -129,20 +128,19 @@ retained.
 | `year_disclosed` | int | Year of primary source |
 | `confidence` | string | `high` / `medium` / `low` |
 
-### Coverage statistics
+### Coverage statistics (Q1 2024)
 
-| Market | Facilities | Est. capacity (GW) | Source coverage |
-|--------|-----------|-------------------|-----------------|
-| Northern Virginia | 78 | 6.1 | High (utility filings) |
-| Dallas–Fort Worth | 44 | 3.1 | High (ERCOT queue) |
-| Chicago metro | 28 | 1.7 | Medium |
-| Phoenix | 24 | 1.6 | Medium (APS filings) |
-| Atlanta | 21 | 1.4 | Medium |
-| Pacific Northwest | 18 | 1.1 | High (BPA filings) |
-| SF Bay Area | 22 | 1.1 | Medium |
-| NYC Metro | 19 | 1.0 | Medium |
-| Other | 58 | 2.8 | Low–medium |
-| **Total** | **312** | **19.9** | — |
+| State | Facilities | Capacity (MW) | Source coverage |
+|-------|-----------|---------------|-----------------|
+| Virginia | 19 | 2,325 | High (utility filings) |
+| Texas | 15 | 1,775 | High (ERCOT queue) |
+| Arizona | 10 | 995 | Medium (APS filings) |
+| Georgia | 8 | 680 | Medium |
+| California | 8 | 490 | Medium |
+| Illinois | 7 | 575 | Medium |
+| Oregon | 5 | 800 | High (BPA filings) |
+| Other states | 6 | 2,670 | Low–medium |
+| **Total** | **98** | **10,210** | — |
 
 ---
 

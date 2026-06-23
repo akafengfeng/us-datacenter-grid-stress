@@ -25,33 +25,45 @@ from config import *
 os.makedirs(FIGURES_DIR, exist_ok=True)
 
 # ------------------------------------------------------------------
-# Market data (same as 03_carbon_dcgsi.py; imported here to keep
-# each script self-contained and runnable independently)
-# Sources: EPA eGRID 2022; NERC 2024 LTRA; utility IRP filings
+# Load market data from clustering and eGRID
 # ------------------------------------------------------------------
-MARKETS = pd.DataFrame([
-    ("Northern Virginia", "SRVC",  31.2, 12.4, 0.148),
-    ("Dallas–Fort Worth", "ERCT",  15.5,  8.7, 0.348),
-    ("Chicago Metro",     "RFCW",   8.5,  4.2, 0.197),
-    ("Phoenix",           "AZNM",   7.9,  5.8, 0.124),
-    ("Atlanta",           "SRCE",   7.0,  6.3, 0.132),
-    ("Pacific Northwest", "NWPP",   5.5,  2.1, 0.721),
-    ("SF Bay Area",       "CAMX",   5.4,  2.8, 0.583),
-    ("NYC Metro",         "NYUP",   5.0,  3.1, 0.263),
-    ("Dispersed",         "RFCE",  14.0,  2.5, 0.220),
-], columns=["market", "egrid_subrgn", "cap_share_pct",
-            "dc_growth_pct", "renew_frac"])
+from load_data import load_egrid
 
 
-def compute_ras(df: pd.DataFrame) -> pd.DataFrame:
-    """Compute RAS for each market."""
+def load_market_data_ras(cluster_stats_path: str, egrid: pd.DataFrame) -> pd.DataFrame:
+    """Load market data from clustering output with renewable fractions."""
+    df = pd.read_csv(cluster_stats_path)
+    df = df.rename(columns={
+        'capacity_gw': 'capacity_gw',
+        'share_pct': 'cap_share_pct',
+        'label': 'market',
+        'top_egrid': 'egrid_subrgn',
+    })
+
+    # Merge with eGRID renewable fractions
+    egrid_data = egrid[["renewable_frac"]].reset_index()
+    egrid_data = egrid_data.rename(columns={"subrgn": "egrid_subrgn"})
+
+    df = df.merge(egrid_data, on="egrid_subrgn", how="left")
+    nat_avg_renew = egrid["renewable_frac"].mean()
+    df["renewable_frac"] = df["renewable_frac"].fillna(nat_avg_renew)
+
+    return df
+
+
+def compute_ras(df: pd.DataFrame, egrid: pd.DataFrame) -> pd.DataFrame:
+    """Compute RAS for each market.
+
+    RAS = R_m / R_nat
+    where R_m is local renewable fraction (market-specific)
+    and R_nat is the national renewable fraction from US grid (eGRID average ≈ 22-24%)
+    """
     df = df.copy()
-    # Capacity-weighted national renewable fraction
-    total_share = df["cap_share_pct"].sum()
-    r_nat = (df["renew_frac"] * df["cap_share_pct"]).sum() / total_share
+    # National renewable fraction from eGRID (US grid average)
+    r_nat = egrid["renewable_frac"].mean()
 
     df["r_nat"] = r_nat
-    df["ras"] = df["renew_frac"] / r_nat
+    df["ras"] = df["renewable_frac"] / r_nat
 
     # Alignment category
     df["alignment"] = pd.cut(
@@ -117,14 +129,14 @@ def print_summary(df: pd.DataFrame, r_nat: float):
     print(f"\n{'Market':<22} {'Renew%':>7} {'RAS':>6} {'Category'}")
     print("-" * 65)
     for _, row in df.iterrows():
-        print(f"{row['market']:<22} {row['renew_frac']:>6.1%}  "
+        print(f"{row['market']:<22} {row['renewable_frac']:>6.1%}  "
               f"{row['ras']:>5.2f}  {row['alignment']}")
 
     below = df[df["ras"] < 1.0]
     above = df[df["ras"] >= 1.0]
     print(f"\nMarkets below fleet average: {len(below)}")
     for _, row in below.iterrows():
-        deficit_pp = (row["r_nat"] - row["renew_frac"]) * 100
+        deficit_pp = (row["r_nat"] - row["renewable_frac"]) * 100
         print(f"  {row['market']:22}  deficit = {deficit_pp:.1f} pp "
               f"(RAS = {row['ras']:.2f})")
 
@@ -136,18 +148,18 @@ def plot_renewable_alignment(df: pd.DataFrame, nat_avg: float = 0.224):
     the dashed line have below-average renewable penetration.
     """
     # Sort ascending so highest value is at top in barh
-    sorted_df = df.sort_values("renew_frac", ascending=True)
+    sorted_df = df.sort_values("renewable_frac", ascending=True)
 
     colors = [
         "#34D399" if v >= nat_avg else "#F87171"
-        for v in sorted_df["renew_frac"]
+        for v in sorted_df["renewable_frac"]
     ]
 
     fig, ax = plt.subplots(figsize=(8.5, 5.0))
 
     bars = ax.barh(
         sorted_df["market"],
-        sorted_df["renew_frac"] * 100,
+        sorted_df["renewable_frac"] * 100,
         color=colors,
         alpha=0.85,
         edgecolor="white",
@@ -166,7 +178,7 @@ def plot_renewable_alignment(df: pd.DataFrame, nat_avg: float = 0.224):
     )
 
     # Value labels
-    for bar, val in zip(bars, sorted_df["renew_frac"] * 100):
+    for bar, val in zip(bars, sorted_df["renewable_frac"] * 100):
         offset = 0.5
         ax.text(val + offset, bar.get_y() + bar.get_height() / 2,
                 f"{val:.1f}%", va="center", fontsize=8)
@@ -180,7 +192,7 @@ def plot_renewable_alignment(df: pd.DataFrame, nat_avg: float = 0.224):
     handles, _ = ax.get_legend_handles_labels()
     ax.legend(handles=handles + legend_elements, fontsize=8, loc="lower right")
 
-    ax.set_xlim(0, max(sorted_df["renew_frac"].max() * 100 * 1.18, 30))
+    ax.set_xlim(0, max(sorted_df["renewable_frac"].max() * 100 * 1.18, 30))
     ax.grid(axis="x", linestyle=":", alpha=0.4)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
@@ -193,7 +205,10 @@ def plot_renewable_alignment(df: pd.DataFrame, nat_avg: float = 0.224):
 
 
 if __name__ == "__main__":
-    df = compute_ras(MARKETS.copy())
+    egrid = load_egrid()
+    cluster_path = os.path.join(RESULTS_DIR, "cluster_stats.csv")
+    markets = load_market_data_ras(cluster_path, egrid)
+    df = compute_ras(markets.copy(), egrid)
     r_nat = df["r_nat"].iloc[0]
 
     print_summary(df, r_nat)

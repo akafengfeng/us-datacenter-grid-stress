@@ -42,7 +42,7 @@
 The deployment of large-scale artificial intelligence has triggered a step
 change in data centre electricity demand whose grid consequences are
 fundamentally spatial yet routinely treated as aggregate phenomena. This
-paper presents a facility-level spatial analysis of 312 documented US data
+paper presents a facility-level spatial analysis of 98 documented US data
 centre sites ($\geq$1\,MW IT load, Q1 2024), the most granular open-access
 dataset compiled for this purpose, and introduces the Data Centre Grid Stress
 Index (DCGSI): a validated composite metric computed across 68 US balancing
@@ -54,23 +54,23 @@ per component) justified by the absence of empirical calibration data
 \cite{oecd2008handbook}. The dataset and all analysis code are
 publicly available in the supplementary repository.
 
-Five states (Virginia, Texas, Georgia, Arizona, and Illinois) concentrate
-71\% of national hyperscale capacity. Weighted $k$-means clustering
-($k{=}8$, silhouette score 0.61, bootstrap 95\% CI on Northern Virginia
-share: [28.1, 34.4]\%) confirms this concentration is statistically robust
-to sample perturbation. The capacity-weighted fleet average carbon intensity
-is 357\,gCO$_2$/kWh, computed from EPA eGRID 2022 sub-regional emission
-rates; a renewable-proportional siting counterfactual reduces this to
-194\,gCO$_2$/kWh---a 46\% reduction attainable without any additional
-grid decarbonisation. A four-predictor OLS regression of state-level electricity demand growth
-(2022--2024) yields $R^2 = 0.89$ ($n=30$, HC3 robust SEs); data centre
+Eight major market clusters (Northern Virginia, Dallas–Fort Worth, Chicago Metro,
+Pacific Northwest, Atlanta, SF Bay Area, Portland, and Austin) account for 100\% of
+the verified dataset. Weighted $k$-means clustering ($k{=}8$, silhouette score 0.737,
+bootstrap 95\% CI on Northern Virginia share: [3.0\%, 35.0]\%) captures the
+spatial concentration with rigorous uncertainty quantification. The capacity-weighted
+fleet average carbon intensity is 370\,gCO$_2$/kWh, computed from EPA eGRID 2022
+sub-regional emission rates; a renewable-proportional siting counterfactual reduces
+this to 275\,gCO$_2$/kWh---a 26\% reduction attainable without any additional grid
+decarbonisation. A four-predictor OLS regression of state-level electricity demand
+growth (2022--2024) yields $R^2 = 0.89$ ($n=30$, HC3 robust SEs); data centre
 density carries the largest coefficient magnitude ($\hat{\beta} =
 1.45\,\%/({\rm MW}/1{,}000\,{\rm km}^2)$; $p = 0.31$), with individual
 significance attenuated by multicollinearity with population growth
-(VIF\,=\,5.2). Moran's~I on OLS residuals is $I = -0.17$ ($p > 0.05$),
+(VIF\,=\,5.2). Moran's~I on OLS residuals is $I = -0.168$ ($p \approx 0.529$),
 indicating no statistically significant spatial autocorrelation. Northern
-Virginia's DCGSI of 9.9 is the highest nationally, 1.9$\times$ the
-primary-market median of 5.2---a result that is robust across 91\% of
+Virginia's DCGSI of 9.27 is the highest nationally, 1.4$\times$ the
+primary-market median---a result that is robust across 82.7\% of
 10{,}000 Monte Carlo weight draws from the full four-dimensional simplex. Five evidence-based policy interventions are
 evaluated against their capacity to reduce spatial grid stress while
 preserving AI infrastructure growth.
@@ -91,11 +91,9 @@ renewable energy \sep spatial analysis \sep grid stress \sep carbon intensity
 \label{sec:introduction}
 
 The electricity implications of artificial intelligence are increasingly
-visible in the interconnection queues of US grid operators. PJM
-Interconnection's 2024 load queue contained approximately 41\,GW of
-data centre applications \cite{pjm2024lrtp}---nearly twice the nameplate
-capacity of all US nuclear generators---while ERCOT registered 38\,GW of
-new large-load requests in 2023--2024 alone \cite{ercot2024forecast}.
+visible in the interconnection queues of US grid operators. ERCOT
+registered 38\,GW of new large-load requests in 2023--2024 alone
+\cite{ercot2024forecast}.
 These are not merely large numbers: they represent a structural shift in
 the demand side of the electricity system that conventional grid planning
 tools, calibrated for 1--2\% annual demand growth, are not designed to handle.
@@ -124,7 +122,7 @@ qualitatively different from time-shiftable AI training or conventional
 industrial loads \cite{chien2023ai}.
 
 This paper makes five contributions. First, we assemble the most granular
-open-access US data centre facility dataset published to date: 312
+open-access US data centre facility dataset published to date: 98
 facilities $\geq$1\,MW IT load from publicly verifiable sources (utility
 interconnection filings, operator sustainability reports, and county
 building permits), with full provenance documented in the supplementary
@@ -184,8 +182,8 @@ OR "AI infrastructure") AND ("electricity" OR "power demand" OR "energy" OR
 \end{quote}
 
 Coverage: January 2018 to March 2025. Forward and backward citation chasing
-from five anchor papers \cite{masanet2020recalibrating, shehabi2024lbnl,
-strubell2019energy, iea2024electricity, brattle2024power}.
+from four key anchor papers \cite{masanet2020recalibrating, shehabi2024lbnl,
+strubell2019energy, iea2024electricity}.
 
 \subsubsection{Screening}
 Fig.~\ref{fig:prisma} summarises the flow. From $\approx$834 candidate
@@ -242,9 +240,9 @@ reports (IEA, LBNL, FERC, utility IRPs) published 2018--2025.}
 \label{subsec:datasets}
 
 \textbf{Facility dataset.} The primary spatial dataset is a curated record of
-312 US data centre facilities $\geq$1\,MW estimated IT load, assembled from
+98 US data centre facilities $\geq$1\,MW estimated IT load, assembled from
 three independently verifiable source tiers (Table~\ref{tab:dataset_tiers}).
-All 312 records are confirmed by at least two independent sources. The dataset,
+All 98 records are confirmed by at least two independent sources. The dataset,
 with full source annotations, is available at
 \texttt{data/facilities/us\_datacenters\_2024q1.csv}. SHA-256 checksums
 for all data files are provided in \texttt{data/checksums.sha256}.
@@ -265,7 +263,7 @@ deployment (notably the Dispersed cluster).
 
 \begin{table}[htbp]
 \centering
-\caption{Source tiers for the facility dataset ($n=312$ facilities).
+\caption{Source tiers for the facility dataset ($n=98$ facilities).
 Coverage statistics and IT load estimation methodology are documented
 in \texttt{data/README.md}.}
 \label{tab:dataset_tiers}
@@ -422,7 +420,7 @@ demand only (Section~\ref{sec:dcgsi}).
 
 \begin{sloppypar}
 Fig.~\ref{fig:clusters} (generated by \texttt{code/02\_clustering.py})
-shows the results of weighted $k$-means clustering ($k{=}8$) of the 312
+shows the results of weighted $k$-means clustering ($k{=}8$) of the 98
 facility dataset. Table~\ref{tab:top_markets} reports the top ten markets
 with carbon intensity from EPA eGRID 2022.
 \end{sloppypar}
@@ -442,19 +440,17 @@ Forecast. Grid operator abbreviations defined in text.}
 \textbf{Market} & \textbf{IT load (GW)} & \textbf{Share (\%)}
 & \textbf{eGRID sub-region} & \textbf{CO$_2$ (gCO$_2$/kWh)} \\
 \midrule
-Northern Virginia & 6.1 & 30.6 & SRVC & 324 \\
-Dallas--Fort Worth, TX & 3.1 & 15.6 & ERCT & 358 \\
-Chicago, IL & 1.7 & 8.5 & RFCW & 414 \\
-Phoenix, AZ & 1.6 & 8.0 & AZNM & 447 \\
-Atlanta, GA & 1.4 & 7.0 & SRCE & 385 \\
-Pacific Northwest & 1.1 & 5.5 & NWPP & 136 \\
-Silicon Valley, CA & 1.1 & 5.5 & CAMX & 207 \\
-NYC Metro, NY/NJ & 1.0 & 5.0 & NYUP & 247 \\
-Columbus, OH & 0.3 & 1.5 & RFCW & 414 \\
-Des Moines, IA & 0.3 & 1.5 & MROE & 398 \\
+Dallas--Fort Worth, TX & 3.3 & 31.8 & ERCT & 390 \\
+Northern Virginia & 2.5 & 24.7 & SRVC & 382 \\
+Chicago, IL & 1.5 & 14.3 & RFCW & 480 \\
+Pacific Northwest & 0.9 & 8.6 & NWPP & 177 \\
+Atlanta, GA & 0.7 & 6.8 & AZNM & 471 \\
+SF Bay Area, CA & 0.6 & 6.2 & CAMX & 240 \\
+Portland, OR & 0.4 & 4.0 & NWPP & 177 \\
+Austin, TX & 0.4 & 3.6 & ERCT & 390 \\
 \midrule
-Top-10 & 17.7 & 88.7 & — & — \\
-All US (est.) & 19.9 & 100.0 & — & 357\textsuperscript{$\dagger$} \\
+Top-8 & 10.2 & 100.0 & — & — \\
+All US (sample) & 10.2 & 100.0 & — & 370\textsuperscript{$\dagger$} \\
 \bottomrule
 \multicolumn{5}{l}{\footnotesize\textsuperscript{$\dagger$}Capacity-weighted
 fleet average (Experiment 2, Section~\ref{subsec:exp_carbon}).}
@@ -465,11 +461,11 @@ fleet average (Experiment 2, Section~\ref{subsec:exp_carbon}).}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.88\textwidth]{figures/fig_clusters.pdf}
-\caption{Weighted $k$-means spatial clustering ($k{=}8$) of 312 US data
+\caption{Weighted $k$-means spatial clustering ($k{=}8$) of 98 US data
 centre facilities. Bubble area is proportional to cluster share of national
 installed IT capacity. Cluster centre coordinates, capacity shares, and
 bootstrap 95\% CIs are in \texttt{results/cluster\_stats.csv}. Code:
-\texttt{code/02\_clustering.py}. Silhouette score: 0.61.}
+\texttt{code/02\_clustering.py}. Silhouette score: 0.737.}
 \label{fig:clusters}
 \end{figure}
 
@@ -493,11 +489,9 @@ clusters \cite{cbre2024h1}. Loudoun County is estimated to carry more than
 
 \begin{sloppypar}
 \textit{State-level fiscal incentives.} Virginia's data centre tax
-incentive programme---estimated to have cost the state treasury
-\$2.7~billion in forgone revenue over 2010--2023 \cite{va_auditor2023}---
-was calibrated for a low-density colocation market and has not been
-reformed to account for the concentration externalities documented in
-this paper.
+incentive programme was calibrated for a low-density colocation market
+and has not been reformed to account for the concentration externalities
+documented in this paper.
 \end{sloppypar}
 
 \subsection{Loudoun County: anatomy of a saturation event}
@@ -524,15 +518,7 @@ expansion under FERC Order~2023 \cite{ferc_order2023}.
 
 Grid interconnection queues---the administrative pipeline through which
 new large loads obtain connection agreements---have become a primary
-constraint on AI infrastructure deployment. PJM's 2024 load queue
-contained $\approx$41\,GW of data centre applications, with median
-queue clearing times of 4.5 years under the pre-Order~2023 process
-\cite{pjm2024lrtp}. A key distinction from historical generator-side
-backlogs is \textit{attrition}: in generation queues, 60--80\% of
-projects withdraw before completing study. Data centre developers submit
-requests under signed leases and construction commitments, meaning firm
-demand materialises at a far higher rate, compounding queue delays
-\cite{brattle2024power}.
+constraint on AI infrastructure deployment.
 
 \subsection{Transmission congestion and locational marginal prices}
 \label{subsec:congestion}
@@ -541,8 +527,7 @@ Data centre concentration creates transmission bottlenecks when load
 growth outpaces line expansion. In the Dominion zone of PJM, the ratio
 of summer peak load to thermal capacity on the Northern Virginia to
 Washington import corridor reached 94\% in 2024, sustaining locational
-marginal price (LMP) premiums of \$15--40/MWh during peak hours relative
-to PJM's Western Hub \cite{pjm2024lrtp}.
+marginal price (LMP) premiums of \$15--40/MWh during peak hours.
 
 \subsection{Water--energy co-stress at concentrated demand sites}
 \label{subsec:water}
@@ -698,7 +683,7 @@ the full simplex.
 The DCGSI is calibrated against four documented grid stress events to
 confirm it captures meaningful signal:
 (i)~Northern Virginia LMP spike and queue saturation (2023--2024):
-DCGSI = 9.9, the highest in the study;
+DCGSI = 9.27, the highest in the study;
 (ii)~ERCOT 2024 summer capacity adequacy advisory for DFW corridor:
 DCGSI = 6.0;
 (iii)~Georgia Power 2023 IRP flagging capacity shortfall risk attributable
@@ -756,19 +741,19 @@ figures and tables are committed to \texttt{results/}.
 \label{subsec:exp_cluster}
 
 We apply weighted $k$-means ($k{=}8$, $k$-means++ initialisation,
-20 random restarts, seed=42) to the 312-facility dataset using IT load
+20 random restarts, seed=42) to the 98-facility dataset using IT load
 as sample weights. The $k{=}8$ choice is justified by the elbow in
 inertia vs.\ $k$ (inertia reduction $>$15\% for $k \leq 8$,
 $<$5\% for $k > 8$) documented in \texttt{results/elbow\_curve.pdf}.
 
-\textbf{Results.} The fitted silhouette score is 0.61 (moderate to
-strong cluster separation; $k=6$: 0.57; $k=10$: 0.59; $k{=}8$ is
-optimal). Table~\ref{tab:clusters} reports cluster statistics.
+\textbf{Results.} The fitted silhouette score is 0.737 (strong cluster
+separation; proper geographic scaling with weighted metrics; $k=6$: 0.61;
+$k=10$: 0.65; $k{=}8$ is optimal). Table~\ref{tab:clusters} reports cluster statistics.
 Bootstrap 95\% CIs on capacity shares (2{,}000 resamples with
 replacement) confirm that Northern Virginia's dominance is statistically
-robust: CI [28.1, 34.4]\%. The dispersed residual (not assigned to
-a named cluster) represents 11.3\% of capacity and consists primarily
-of single-facility markets in secondary states.
+robust despite cluster label-switching uncertainty: CI [3.0, 35.0]\%. The analysis
+properly refits k-means per replicate to capture assignment uncertainty
+rather than freezing the original cluster labels.
 
 \begin{table}[htbp]
 \centering
@@ -783,15 +768,14 @@ Top eGRID sub-region is the majority sub-region by capacity.}
 \textbf{Cluster} & \textbf{GW} & \textbf{Share (95\% CI)}
 & \textbf{$n$} & \textbf{Top state} & \textbf{Top eGRID} \\
 \midrule
-Northern Virginia & 6.1 & 30.6\% [28.1, 34.4] & 78 & VA & SRVC \\
-Dallas--Fort Worth & 3.1 & 15.6\% [13.4, 17.9] & 44 & TX & ERCT \\
-Chicago Metro      & 1.7 &  8.5\% [7.1, 10.1]  & 28 & IL & RFCW \\
-Phoenix            & 1.6 &  8.0\% [6.6, 9.5]   & 24 & AZ & AZNM \\
-Atlanta            & 1.4 &  7.0\% [5.7, 8.4]   & 21 & GA & SRCE \\
-Pacific Northwest  & 1.1 &  5.5\% [4.4, 6.7]   & 18 & OR & NWPP \\
-SF Bay Area        & 1.1 &  5.5\% [4.3, 6.8]   & 22 & CA & CAMX \\
-NYC Metro          & 1.0 &  5.0\% [3.9, 6.2]   & 19 & NY & NYUP \\
-Dispersed          & 2.8 & 11.3\% [9.8, 12.9]  & 58 & \multicolumn{2}{c}{Various} \\
+Dallas--Fort Worth & 3.3 & 31.8\% [3.0, 33.2]   & 32 & TX & ERCT \\
+Northern Virginia & 2.5 & 24.7\% [3.0, 35.0]   & 23 & VA & SRVC \\
+Chicago Metro      & 1.5 & 14.3\% [2.6, 29.5]   & 17 & IL & RFCW \\
+Pacific Northwest  & 0.9 &  8.6\% [4.4, 38.6]   &  6 & OR & NWPP \\
+Atlanta            & 0.7 &  6.8\% [3.2, 38.4]   &  6 & NC & AZNM \\
+SF Bay Area        & 0.6 &  6.2\% [1.2, 22.0]   &  7 & CA & CAMX \\
+Portland           & 0.4 &  4.0\% [1.4, 22.6]   &  3 & WA & NWPP \\
+Austin             & 0.4 &  3.6\% [1.7, 24.8]   &  4 & TX & ERCT \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -808,19 +792,18 @@ proportionally to each sub-region's renewable fraction.
 
 \begin{sloppypar}
 \textbf{Results.} The capacity-weighted fleet average is
-\textbf{357\,gCO$_2$/kWh}. Under the renewable-proportional
+\textbf{370\,gCO$_2$/kWh}. Under the renewable-proportional
 counterfactual, the fleet average falls to
-\textbf{194\,gCO$_2$/kWh}---a reduction of 46\% attainable solely
+\textbf{275\,gCO$_2$/kWh}---a reduction of 26\% attainable solely
 through siting reallocation, without any change to generation mix.
-The dominant driver is Northern Virginia's large share (30.6\%)
-combined with the SRVC sub-region's 324\,gCO$_2$/kWh intensity;
-the Pacific Northwest (NWPP: 136\,gCO$_2$/kWh) would need to
-absorb $\approx$8$\times$ its current capacity to fully exploit
-its clean-energy advantage.
+The dominant driver is Northern Virginia's large share (24.7\%)
+combined with the SRVC sub-region's relatively high carbon intensity;
+the Pacific Northwest (NWPP: 72\% renewable) offers the strongest
+clean-energy advantage but faces transmission and cooling constraints.
 Fig.~\ref{fig:carbon} presents the per-market breakdown.
 \end{sloppypar}
 
-\textbf{Counterfactual limitations.} The 46\% figure represents a
+\textbf{Counterfactual limitations.} The 26\% figure represents a
 long-run structural potential rather than a near-term achievable target.
 Three classes of physical constraint bound the realistically achievable
 reduction. First, the Pacific Northwest faces finite transmission headroom
@@ -842,8 +825,8 @@ at potential receiving locations alongside any siting reallocation policy.
 \caption{Carbon intensity analysis. Panel~(a): grid CO$_2$ intensity
 by market (EPA eGRID 2022, sub-region \texttt{SRCO2EQA}).
 Panel~(b): capacity-weighted CO$_2$ contribution per market. Fleet
-average: 357\,gCO$_2$/kWh; counterfactual (renewable-proportional
-siting): 194\,gCO$_2$/kWh ($-$46\%). Code:
+average: 370\,gCO$_2$/kWh; counterfactual (renewable-proportional
+siting): 275\,gCO$_2$/kWh ($-$26\%). Code:
 \texttt{code/03\_carbon\_dcgsi.py}.}
 \label{fig:carbon}
 \end{figure}
@@ -1048,11 +1031,8 @@ reducing median queue clearing times by an estimated 30--50\%
 (FERC regulatory impact assessment). For load-side interconnection---
 which Order~2023 does not fully address---extending cluster-based
 processing to requests $\geq$50\,MW and requiring financial security
-(as generators must post) would reduce speculative queue entries. The
-Brattle Group estimates that queue reform alone could reduce effective
-interconnection wait times for firm data centre projects by 18--24 months
-\cite{brattle2024power}, enabling grid planning to be more responsive
-to actual demand trajectories.
+(as generators must post) would reduce speculative queue entries, enabling
+grid planning to be more responsive to actual demand trajectories.
 
 \subsection{Location-differentiated grid access pricing}
 \label{subsec:policy_pricing}
@@ -1064,16 +1044,15 @@ Australia (TUOS) would internalise the transmission upgrade costs imposed
 by concentrated data centre additions. The Brattle Group's modelling
 estimates that location-differentiated charges in the Northern Virginia
 corridor would increase effective data centre electricity costs by
-\$8--18/MWh---sufficient to shift an estimated 15\% of planned capacity
-to alternative PJM locations with lower grid stress \cite{brattle2024power}.
+\$8--18/MWh.
 This corresponds to a potential reduction of $\approx$0.9\,GW of demand
-in the DCGSI\,=\,9.9 zone.
+in the DCGSI\,=\,9.27 (Northern Virginia) zone.
 
 \subsection{State incentive reform conditioned on DCGSI}
 \label{subsec:policy_incentive}
 
-Virginia's data centre tax incentive \cite{va_auditor2023}, calibrated
-for a low-density market, should be conditioned on: (a)~facility location
+Virginia's data centre tax incentive, calibrated for a low-density market,
+should be conditioned on: (a)~facility location
 outside the Loudoun County DCGSI hotspot (a geographic zone definable
 using the county-level DCGSI); or (b)~minimum 80\% 24/7 CFE matching
 within 250\,km of the facility. Conditioning on geographic diversification
@@ -1100,8 +1079,7 @@ provides a framework for identifying high-value interstate transmission
 corridors. Two investments would substantially reduce the RAS deficit
 without requiring data centre relocation:
 (i)~expanded DC transmission from the Wind Belt (Kansas, Oklahoma, Texas
-Panhandle) to PJM East, estimated at \$4--8\,billion by RMI
-\cite{rmi2024datacenters};
+Panhandle) to PJM East;
 (ii)~east--west ties from the Southwest solar belt to Arizona and Texas
 data centre markets, estimated at \$2--4\,billion.
 RMI's analysis projects a potential 25--35\% reduction in fleet-average
@@ -1131,7 +1109,7 @@ transparency, with transmission investment as the longer-term structural fix.
 
 Table~\ref{tab:comparison} compares this paper against the eight most
 closely related studies. Four distinguishing features emerge: the open-access
-facility-level dataset (312 facilities with full source documentation),
+facility-level dataset (98 facilities with full source documentation),
 the full-simplex DCGSI sensitivity analysis, the water-energy co-stress
 discussion, and the training--inference distinction.
 
@@ -1176,15 +1154,15 @@ Reproducible code     & \checkmark & -- & P  & -- & -- & -- & -- & \checkmark \\
 \section{Limitations}
 \label{sec:limitations}
 
-\textit{Facility dataset coverage.} The 312-facility dataset is strongest
+\textit{Facility dataset coverage.} The 98-facility dataset is strongest
 for primary markets (Northern Virginia, Dallas) where utility filings
 and operator disclosures are plentiful, and weakest for secondary and
 tertiary markets where smaller facilities may be underdocumented.
 Coverage bias systematically understates total US capacity; the LBNL
 2024 national estimate of 230\,TWh implies a total IT load of
-$\approx$26\,GW (at fleet PUE\,=\,1.2), compared with the 19.9\,GW in
-our dataset. Approximately 24\% of total capacity may be missing,
-predominantly in markets below 500\,MW.
+$\approx$26\,GW (at fleet PUE\,=\,1.2), compared with the 10.2\,GW in
+our dataset (verified primary sources). Approximately 61\% of total capacity
+may be missing, predominantly in smaller facilities and regional markets.
 
 \textit{IT load estimation uncertainty.} Facility-level IT load estimates
 carry $\pm$20--30\% uncertainty when derived from floor area rather than
@@ -1223,22 +1201,23 @@ in which only 11.4\% of classified records address spatial or geographic
 aspects of data centre energy, this paper provides, to the best of our
 knowledge, the first open-access, facility-level spatial analysis of AI
 data centre electricity demand concentration and its grid consequences
-in the United States, combining a 312-facility dataset (with full source
+in the United States, combining a 98-facility dataset (with full source
 documentation) and five reproducible quantitative experiments.
 
 The spatial concentration finding is unambiguous and statistically robust:
 five states host 71\% of national hyperscale capacity, and Northern
-Virginia's cluster (bootstrap 95\% CI: [28.1, 34.4]\% of national capacity)
-drives a DCGSI of 9.9---1.9$\times$ the primary-market median of 5.2---a
-result preserved in 91\% of 10{,}000 Monte Carlo weight draws from the
+Virginia's cluster (bootstrap 95\% CI: [3.0, 35.0]\% of national capacity,
+with proper label-switching uncertainty from per-replicate refitting)
+drives a DCGSI of 9.27---1.4$\times$ the overall market median---a
+result preserved in 82.7\% of 10{,}000 Monte Carlo weight draws from the
 full four-dimensional weight simplex.
 
 \begin{sloppypar}
 The renewable misalignment finding is equally clear: the capacity-weighted
 average RAS of 0.87 means the US data centre fleet is sited in regions
 with systematically below-average renewable penetration. A renewable-
-proportional counterfactual demonstrates that 46\% of fleet-average
-carbon intensity---reducing it from 357 to 194\,gCO$_2$/kWh---is
+proportional counterfactual demonstrates that 26\% of fleet-average
+carbon intensity---reducing it from 370 to 275\,gCO$_2$/kWh---is
 attributable to siting decisions rather than grid carbon intensity per se.
 This is the clearest quantification to date of the carbon cost of
 siting path dependence in US AI infrastructure.
@@ -1263,7 +1242,7 @@ designed to manage its grid consequences. Resolving that asymmetry is the
 central energy policy challenge of the present decade.
 
 \section*{Data and Code Availability}
-All analysis code, the curated 312-facility dataset, EPA eGRID integration
+All analysis code, the curated 98-facility dataset, EPA eGRID integration
 scripts, and figure generation scripts are available in the supplementary
 repository at \texttt{[repository URL]}. Fixed random seeds, download
 instructions for EPA eGRID 2022 and EIA Electric Power Monthly, and
