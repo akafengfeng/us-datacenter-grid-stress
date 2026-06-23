@@ -34,14 +34,14 @@ MARKET_NAMES = [
 ]
 
 CLUSTER_COLORS = [
-    "#2563EB",  # blue
-    "#DC2626",  # red
-    "#D97706",  # amber
-    "#059669",  # green
-    "#7C3AED",  # violet
-    "#0891B2",  # cyan
-    "#B45309",  # brown
-    "#6B7280",  # gray
+    (37/255, 99/255, 235/255),    # blue
+    (220/255, 38/255, 38/255),    # red
+    (217/255, 119/255, 6/255),    # amber
+    (5/255, 150/255, 105/255),    # green
+    (124/255, 58/255, 237/255),   # violet
+    (8/255, 145/255, 178/255),    # cyan
+    (180/255, 83/255, 9/255),     # brown
+    (107/255, 114/255, 128/255),  # gray
 ]
 
 
@@ -199,34 +199,39 @@ def bootstrap_shares(df: pd.DataFrame, coords_scaled: np.ndarray,
 def plot_clusters(df: pd.DataFrame, coords_deg: np.ndarray,
                  km_centers_scaled: np.ndarray, stats: pd.DataFrame):
     """Plot clusters with properly assigned labels."""
-    fig, ax = plt.subplots(figsize=(11, 6))
+    fig, ax = plt.subplots(figsize=(13, 7.5), facecolor="white")
 
-    # Plot cluster centers
+    # Background scatter of all facilities (very subtle)
+    ax.scatter(coords_deg[:, 1], coords_deg[:, 0], s=1.5, c="#E5E7EB",
+              alpha=0.3, zorder=1)
+
+    # Plot cluster centers with large, highly visible bubbles
     for _, row in stats.iterrows():
         color = CLUSTER_COLORS[int(row["cluster_id"]) % len(CLUSTER_COLORS)]
-        size = row["share_pct"] * 30
+        size = row["share_pct"] * 80  # significantly increased
 
-        # Note: km_centers_scaled are in scaled coordinates - need to convert back
-        # For plotting purposes, use the data coordinates instead
+        # Large, opaque bubble with strong border
         ax.scatter(row["lon"], row["lat"], s=size, c=color,
-                   alpha=0.75, zorder=5, edgecolors="white", linewidths=0.8)
+                   alpha=0.9, zorder=6, edgecolors="black", linewidths=1.5)
+
+        # Label with strong visibility
         ax.annotate(f"{row['label']}\n({row['share_pct']:.1f}%)",
                     xy=(row["lon"], row["lat"]),
-                    xytext=(8, 4), textcoords="offset points",
-                    fontsize=7.5, color="#1F2937")
-
-    # Background scatter of all facilities
-    ax.scatter(coords_deg[:, 1], coords_deg[:, 0], s=1.5, c="#9CA3AF",
-              alpha=0.35, zorder=3)
+                    xytext=(12, 8), textcoords="offset points",
+                    fontsize=9.5, fontweight="bold", color="black",
+                    bbox=dict(boxstyle="round,pad=0.4", facecolor="white",
+                             edgecolor="black", alpha=0.9, linewidth=1),
+                    zorder=12)
 
     ax.set_xlim(-130, -65)
     ax.set_ylim(23, 50)
-    ax.set_xlabel("Longitude (°W)", fontsize=9)
-    ax.set_ylabel("Latitude (°N)", fontsize=9)
+    ax.set_xlabel("Longitude (°W)", fontsize=12, fontweight="bold")
+    ax.set_ylabel("Latitude (°N)", fontsize=12, fontweight="bold")
     ax.set_title("US Data Centre Capacity by Spatial Cluster\n"
                  "(bubble area ∝ share of national installed IT load, Q1 2024)",
-                 fontsize=10)
-    ax.grid(True, linestyle=":", alpha=0.4)
+                 fontsize=13, fontweight="bold", pad=16)
+    ax.grid(True, linestyle=":", alpha=0.35)
+    ax.tick_params(labelsize=10)
     fig.tight_layout()
     fig.savefig(os.path.join(FIGURES_DIR, "fig_clusters.pdf"),
                 dpi=300, bbox_inches="tight")

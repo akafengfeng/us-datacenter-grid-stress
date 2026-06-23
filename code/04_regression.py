@@ -122,15 +122,27 @@ def vif_table(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def plot_regression(df: pd.DataFrame, model):
-    fig, ax = plt.subplots(figsize=(7, 5))
+    fig, ax = plt.subplots(figsize=(9, 6))
     ax.scatter(df["dc_density"], df["growth_pct"],
-               s=50, color="#2563EB", alpha=0.75, zorder=5)
+               s=80, color="#2563EB", alpha=0.8, zorder=5, edgecolors="darkblue", linewidths=0.5)
 
-    # Label notable states
-    for _, row in df[df["dc_density"] > 0.5].iterrows():
+    # Label all notable states with better placement
+    offset_map = {
+        "VA": (8, 8), "TX": (8, -12), "GA": (8, -12), "AZ": (8, -12),
+        "IL": (8, 8), "OH": (8, 8), "NC": (8, 8), "NV": (-50, 0),
+        "NM": (-50, 0), "WA": (-50, 0), "IA": (8, -12), "OR": (-50, 0),
+        "CA": (-50, 0), "NY": (-50, 0),
+    }
+
+    for _, row in df[df["dc_density"] > 0.35].iterrows():
+        offset = offset_map.get(row["state"], (8, 8))
         ax.annotate(row["state"],
                     xy=(row["dc_density"], row["growth_pct"]),
-                    xytext=(4, 3), textcoords="offset points", fontsize=8)
+                    xytext=offset, textcoords="offset points",
+                    fontsize=9.5, fontweight="bold",
+                    bbox=dict(boxstyle="round,pad=0.3", facecolor="yellow",
+                             edgecolor="none", alpha=0.6),
+                    zorder=8)
 
     x_range = np.linspace(df["dc_density"].min(), df["dc_density"].max(), 200)
     # Partial regression line (holding controls at means)
@@ -145,17 +157,18 @@ def plot_regression(df: pd.DataFrame, model):
         ["const", "dc_density", "industrial_mix", "pop_growth_pct", "gdp_growth_pct"]
     ]
     y_pred = model.predict(X_pred)
-    ax.plot(x_range, y_pred, color="#DC2626", linewidth=2,
+    ax.plot(x_range, y_pred, color="#DC2626", linewidth=2.5,
             label=f"Partial regression (β={model.params['dc_density']:.2f}, "
                   f"p={model.pvalues['dc_density']:.3f})")
 
-    ax.set_xlabel("Data centre density (MW / 1,000 km²)", fontsize=9)
-    ax.set_ylabel("Annual electricity demand growth, 2022–2024 (%)", fontsize=9)
+    ax.set_xlabel("Data centre density (MW / 1,000 km²)", fontsize=11, fontweight="bold")
+    ax.set_ylabel("Annual electricity demand growth, 2022–2024 (%)", fontsize=11, fontweight="bold")
     ax.set_title("OLS Regression: Data Centre Density vs Demand Growth\n"
                  f"(n={len(df)}, R²={model.rsquared:.2f}, HC3 robust SEs)",
-                 fontsize=10)
-    ax.legend(fontsize=8)
+                 fontsize=12, fontweight="bold", pad=15)
+    ax.legend(fontsize=9, loc="upper left")
     ax.grid(linestyle=":", alpha=0.4)
+    ax.tick_params(labelsize=10)
     fig.tight_layout()
     fig.savefig(os.path.join(FIGURES_DIR, "fig_regression.pdf"),
                 dpi=300, bbox_inches="tight")
