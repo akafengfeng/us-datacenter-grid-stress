@@ -2,7 +2,7 @@
 
 **Date:** June 23, 2026  
 **Manuscript:** AI-Driven Data Centre Demand Concentration and Renewable Energy Misalignment in the United States  
-**Author:** Feng Wei (PhD Candidate, Computer Science)
+**Author:** Feng Wei
 
 ---
 
@@ -533,7 +533,7 @@ This project taught me several important lessons about using AI tools responsibl
 
 4. **Transparency Matters:** Being honest about using AI as a research tool, and about the mistakes made in the process, actually strengthens credibility rather than weakening it.
 
-As a CS PhD student, I believe this kind of AI-assisted research will become increasingly common. But the lesson here is clear: AI is a powerful tool for augmenting human reasoning and effort, not a substitute for it.
+I believe this kind of AI-assisted research will become increasingly common in academic work. The lesson here is clear: AI is a powerful tool for augmenting human reasoning and effort, not a substitute for it.
 
 ---
 
@@ -566,7 +566,6 @@ I am confident that the manuscript is now publication-ready and meets the highes
 
 **Submitted by:** Feng Wei  
 **Date:** June 23, 2026  
-**PhD Candidate, Computer Science**  
 **Quality Score:** 9/10  
 **Recommendation:** Ready for Publication
 
