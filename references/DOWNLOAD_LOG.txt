@@ -1,0 +1,42 @@
+Downloading References - Tue Jun 23 04:01:58 EDT 2026
+================================================
+Downloading government documents...
+URL: https://www.ercot.com/gridinfo/load/load_hist
+❌ ERCOT 2024 Forecast - Download failed
+URL: https://www.nerc.com/pa/RAPA/ra/Reliability%20Assessments%20DL/NERC_LTRA_2024.pdf
+❌ NERC 2024 LTRA - Download failed
+URL: https://www.iea.org/reports/electricity-2024
+❌ IEA Electricity 2024 - Download failed
+Downloading open-access papers via DOI...
+URL: https://doi.org/10.1126/science.aba3758
+❌ Masanet 2020 (Science) - Download failed
+URL: https://doi.org/10.18653/v1/P19-1351
+❌ Strubell 2019 (ACL) - Download failed
+URL: https://doi.org/10.1145/3606254
+❌ Chien 2023 (ACM) - Download failed
+URL: https://doi.org/10.1038/s41545-021-00101-w
+❌ Mytton 2021 (npj) - Download failed
+URL: https://doi.org/10.7326/M18-0850
+❌ Tricco 2018 (AIM) - Download failed
+URL: https://doi.org/10.1787/9789264043466-en
+❌ OECD 2008 Handbook - Download failed
+Downloading industry reports & standards...
+URL: https://www.goldmansachs.com/insights/articles/ai-investment-forecast-to-approach-200-billion-globally-by-2025.html
+❌ Goldman Sachs AI Report - Download failed
+URL: https://www.cbre.com/insights
+❌ CBRE Data Center Trends - Download failed
+URL: https://energytag.org
+❌ EnergyTag Standard - Download failed
+URL: https://www.dominionenergy.com/about/regulatory-and-news/integrated-resource-plan
+❌ Dominion IRP 2024 - Download failed
+URL: https://www.ferc.gov
+❌ FERC Main Site - Download failed
+Attempting LBNL technical report...
+URL: https://eta.lbl.gov
+❌ Shehabi 2024 LBNL - Download failed
+Attempting MLSys proceedings...
+URL: https://proceedings.mlsys.org/paper/2022
+❌ Wu 2022 MLSys - Download failed
+
+================================================
+Download Complete - Tue Jun 23 04:01:58 EDT 2026
