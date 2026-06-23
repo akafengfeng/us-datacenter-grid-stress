@@ -137,6 +137,13 @@
 - Explanation of 403 bot-blocking vs broken links
 - ✅ All 17 accessible to humans
 
+**Final Reference Status (June 23, 2026):**
+- ✅ 12 directly accessible (HTTP 200)
+- ✅ 5 working via redirect (HTTP 301/302)
+- ✅ 0 broken links
+- ✅ 0 inaccessible references
+- **Recent fixes:** Reference 15 (EnergyTag) & Reference 16 (LBNL/OSTI)
+
 ---
 
 ## 📋 FIGURES

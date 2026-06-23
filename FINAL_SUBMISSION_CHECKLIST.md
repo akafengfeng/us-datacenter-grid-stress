@@ -184,8 +184,9 @@
   - URL: https://energytag.org/standards
   - Status: HTTP 301 (works)
 
-- [x] **shehabi2024lbnl** — LBNL technical report ✅
-  - Status: HTTP 403 (works in browser)
+- [x] **shehabi2024lbnl** — LBNL technical report ✅ FIXED
+  - URL: https://www.osti.gov/biblio/1887568
+  - Status: HTTP 200 (fully accessible)
 
 - [x] **wu2022sustainable** — MLSys 2022 ✅
   - Status: HTTP 200 (fully accessible)

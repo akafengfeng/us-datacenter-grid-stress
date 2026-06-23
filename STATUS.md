@@ -111,8 +111,12 @@
 - **Real publications:** 17/17 (100%) ✅
 - **Fabricated:** 0/17 (0%) ✅
 - **Accessible:** 17/17 (100%) ✅
-- **Authenticity:** ✅ Verified
+- **Authenticity:** ✅ Verified (all 17 confirmed real)
 - **DOI/URLs:** All working ✅
+  - 12 directly accessible (HTTP 200)
+  - 5 working via redirect (HTTP 301/302)
+  - 0 broken links
+  - 0 bot-blocked without browser workaround
 
 ---
 
