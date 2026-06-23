@@ -271,5 +271,11 @@ I welcome any additional questions from the reviewer or editorial team.
 
 ---
 
+## Note on Methodology
+
+This research was conducted with assistance from Claude, an AI research tool. While I directed all research strategy and validated every result, Claude assisted with code development, statistical implementation, and comprehensive verification procedures. This collaborative approach proved valuable for error detection—systematic verification at each step caught issues before submission that manual review alone might have missed.
+
+---
+
 **Submitted by:** Feng Wei  
 **Date:** June 23, 2026
