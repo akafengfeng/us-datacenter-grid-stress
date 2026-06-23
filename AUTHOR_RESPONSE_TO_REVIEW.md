@@ -273,9 +273,9 @@ I welcome any additional questions from the reviewer or editorial team.
 
 ## Note on Research Methodology
 
-This work was conducted with computational assistance from Claude, an AI research tool. I maintained full responsibility for research direction, result validation, and manuscript quality. However, the initial submission contained substantive errors originating from AI-assisted code implementation and statistical analysis—including hardcoded parameters, incorrect formula implementations, and flawed analytical approaches. These errors were identified through systematic code review and have been corrected in this revision.
+This work was conducted with computational assistance from Claude, an AI research tool. I directed the research strategy and maintained responsibility for all submissions. However, I acknowledge that the initial submission contained substantive errors in code implementation and statistical analysis—including hardcoded parameters, incorrect formula implementations, and flawed analytical approaches. These errors were identified by the reviewer and have been systematically corrected in this revision.
 
-This experience underscores a critical principle: AI tools accelerate research iteration but require rigorous independent verification at each analytical step. AI systems can generate outputs with high surface plausibility while containing fundamental errors. Comprehensive human oversight and validation are non-negotiable requirements in research using computational assistance.
+This experience demonstrates a critical requirement: AI-assisted research requires rigorous independent verification from subject-matter experts. AI systems can generate outputs that appear correct while containing fundamental errors. Peer review serves as an essential validation mechanism when computational tools are used in research.
 
 ---
 
