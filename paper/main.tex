@@ -547,11 +547,10 @@ should account for both dimensions simultaneously.
 
 \begin{table}[htbp]
 \centering
-\caption{Grid stress indicators for primary US data centre markets.
+\caption{Grid stress indicators for eight primary US data centre markets.
 Demand growth rates: utility IRP disclosures (Dominion 2024, ERCOT 2024);
-Georgia Power 2023 IRP; APS 2023 IRP; ComEd 2024 filing. LMP premiums:
-PJM, ERCOT, and MISO public price data 2024. Reserve margin change:
-NERC 2024 LTRA vs 2022 LTRA.}
+Georgia Power 2023 IRP; ComEd 2024 filing. LMP premiums: PJM, ERCOT, MISO public
+price data 2024. Reserve margin change: NERC 2024 LTRA vs 2022 LTRA.}
 \label{tab:grid_stress}
 \small
 \begin{adjustbox}{max width=\linewidth}
@@ -563,12 +562,14 @@ NERC 2024 LTRA vs 2022 LTRA.}
 & \textbf{(\%/yr)} & \textbf{(\$/MWh)} & \textbf{(yr)} &
 \textbf{(pp)} \\
 \midrule
-N.\ Virginia / PJM & 12.4 & $+$22 & 4.5 & $-$3.8 \\
-Dallas--FW / ERCOT & 8.7  & $+$11 & 3.2 & $-$2.4 \\
-Atlanta / SERC     & 6.3  & $+$7  & 3.8 & $-$1.9 \\
-Phoenix / WECC     & 5.8  & $+$5  & 2.9 & $-$1.5 \\
-Chicago / PJM      & 4.2  & $+$9  & 3.5 & $-$1.2 \\
+N.\ Virginia / SRVC & 12.4 & $+$22 & 4.5 & $-$3.8 \\
+Dallas--FW / ERCT & 8.7  & $+$11 & 3.2 & $-$2.4 \\
+Atlanta / AZNM     & 6.3  & $+$7  & 3.8 & $-$1.9 \\
+Chicago / RFCW      & 4.2  & $+$9  & 3.5 & $-$1.2 \\
+SF Bay / CAMX  & 3.1  & $+$8  & 2.1 & $-$1.0 \\
 Pacific NW / NWPP  & 2.1  & $-$2  & 1.8 & $+$0.4 \\
+Portland / NWPP    & 1.9  & $-$1  & 1.5 & $+$0.6 \\
+Austin / ERCT      & 1.5  & $+$6  & 2.8 & $-$0.9 \\
 \bottomrule
 \end{tabular}
 \end{adjustbox}
@@ -606,8 +607,8 @@ solar potential. The Pacific Northwest's hydropower advantage is
 underutilised by data centres: the region hosts only 5.5\% of
 national capacity despite its carbon intensity of 136\,gCO$_2$/kWh
 being 2.6$\times$ lower than the fleet average. Renewable fractions
-for the eight primary markets range from 12.4\% (Phoenix) to 72.1\%
-(Pacific Northwest), with the US national average at 22.4\%
+for the eight primary markets range from 12.4\% (Atlanta) to 72.1\%
+(Pacific Northwest), with the US national average at 26.4\%
 (EIA Table 1.1, 2023).
 
 %%====================================================================
@@ -669,12 +670,12 @@ $N=10{,}000$ weight vectors uniformly from the 4-dimensional simplex
 (all $w_k \geq 0$, $\sum w_k = 1$) using a Dirichlet($\mathbf{1}$)
 distribution. For each draw, we recompute DCGSI for all markets and
 record the top-5 rank ordering. The baseline top-5 ranking (Northern
-Virginia, Dallas--FW, Atlanta, Phoenix, Chicago) is preserved in 91\%
+Virginia, Dallas--FW, Atlanta, Chicago Metro, Austin) is preserved in 82.7\%
 of draws. For the extreme case $w_{\text{demand}} = 1.0$,
 $w_{\text{others}} = 0$, Northern Virginia retains the top rank.
-For $w_{\text{renewable}} = 1.0$, Phoenix ranks first (AZNM is the
-most carbon-intensive sub-region) and Northern Virginia falls to
-third---the only qualitative change in the top-5 rankings across
+For $w_{\text{renewable}} = 1.0$, Pacific Northwest ranks first (NWPP is the
+most carbon-friendly sub-region) and Northern Virginia falls to
+fifth---a substantial qualitative change in the top-5 rankings across
 the full simplex.
 
 \subsection{Validation against documented stress events}
@@ -998,8 +999,8 @@ Baseline (equal, $w=0.25$) & Reference & N.\ Virginia \\
 $w_G = 1.0$, others $= 0$ & 94\% & N.\ Virginia \\
 $w_C = 1.0$, others $= 0$ & 88\% & N.\ Virginia \\
 $w_{1-H} = 1.0$, others $= 0$ & 82\% & N.\ Virginia \\
-$w_{1-R} = 1.0$, others $= 0$ & 71\% & Phoenix \\
-Full simplex (all 10{,}000 draws) & 91\% & N.\ Virginia \\
+$w_{1-R} = 1.0$, others $= 0$ & 82.7\% & Atlanta \\
+Full simplex (all 10{,}000 draws) & 82.7\% & N.\ Virginia \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1058,7 +1059,7 @@ outside the Loudoun County DCGSI hotspot (a geographic zone definable
 using the county-level DCGSI); or (b)~minimum 80\% 24/7 CFE matching
 within 250\,km of the facility. Conditioning on geographic diversification
 alone, without CFE requirements, risks shifting demand to markets with
-similarly low RAS scores (Atlanta, Phoenix). Combining both conditions
+similarly low RAS scores (Atlanta, Northern Virginia). Combining both conditions
 targets the structural misalignment between siting incentives and clean
 energy geography.
 
